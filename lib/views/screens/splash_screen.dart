@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import '../../controller/login_controller.dart';
 import '../../utility/colors.dart';
 import 'home_page.dart';
-import 'intro_screen.dart';
+import 'intro_screen_1.dart';
 import 'login_page.dart';
 
 
@@ -54,7 +54,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
       setState(() {
         Navigator.of(context).pushReplacement(
           PageTransition(
-            type: PageTransitionType.fade, child: Provider.of<LoginScreenController>(context,listen: false).isIntro && Provider.of<LoginScreenController>(context,listen: false).isLogin? const HomePage():Provider.of<LoginScreenController>(context,listen: false).isIntro? LoginPage():Provider.of<LoginScreenController>(context,listen: false).isLogin?const HomePage():const IntroPage(),
+            type: PageTransitionType.fade, child: Provider.of<LogInController>(context,listen: false).isIntro && Provider.of<LogInController>(context,listen: false).isLogin? const HomePage():Provider.of<LogInController>(context,listen: false).isIntro? LogInPage():Provider.of<LogInController>(context,listen: false).isLogin?const HomePage():const IntroScreen1(),
           ),
         );
       });

@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../../controller/heatmap_controller.dart';
 import '../../controller/transaction_controller.dart';
-import '../../helper/database_helper.dart';
+import '../../helper/db_helper.dart';
 import '../../modal/transaction_modal.dart';
 import '../../utility/animation/fade_animation_controller.dart';
 import '../component/tran_tile.dart';
@@ -25,7 +25,7 @@ class MonthlyPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title:   const Text('Monthly Data'),),
-      body: Consumer<HeatmapController>(
+      body: Consumer<HeatMapController>(
         builder: (context,pro,child){ {
           pro.updateDateColorMap(context);
           return Column(
@@ -79,7 +79,7 @@ class MonthlyPage extends StatelessWidget {
 
                         DateTime dateTime = DateFormat("MMM d, yyyy").parse(tran.date!);
 
-                        return Provider.of<HeatmapController>(context).selectedDate == dateTime
+                        return Provider.of<HeatMapController>(context).selectedDate == dateTime
                             ? FadeAnimation(
 
                           1+index.toDouble() % index>1?3:index.toDouble()/3 ,20, Dismissible(

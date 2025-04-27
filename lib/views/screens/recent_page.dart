@@ -20,7 +20,7 @@ import '../../controller/login_controller.dart';
 import '../../controller/savings_controller.dart';
 import '../../controller/transaction_controller.dart';
 import '../../controller/user_controller.dart';
-import '../../helper/database_helper.dart';
+import '../../helper/db_helper.dart';
 import '../../modal/transaction_modal.dart';
 import '../../utility/animation/fade_animation_controller.dart';
 import '../component/setting_tile.dart';
@@ -1459,14 +1459,14 @@ class RecentPage extends StatelessWidget {
                         },
                         btnOkOnPress: () async {
                           Provider.of<UserController>(context, listen: false).logoutUser();
-                          await Provider.of<LoginScreenController>(context,listen: false).islogout();
+                          await Provider.of<LogInController>(context,listen: false).islogout();
                           await DbHelper.dbHelper.initDB();
                           Navigator.of(context).pushReplacement(
                               PageTransition(
                                 type: PageTransitionType.size,
                                 duration: const Duration(seconds: 1),
                                 alignment: Alignment.bottomCenter,
-                                child: LoginPage(),
+                                child: LogInPage(),
                               ));
                         },
                       ).show()

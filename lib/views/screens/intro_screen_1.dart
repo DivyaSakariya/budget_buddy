@@ -8,8 +8,8 @@ import '../../utility/animation/fade_animation_controller.dart';
 import 'intro_screen_2.dart';
 import 'login_page.dart';
 
-class IntroPage extends StatelessWidget {
-  const IntroPage({Key? key}) : super(key: key);
+class IntroScreen1 extends StatelessWidget {
+  const IntroScreen1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +33,12 @@ class IntroPage extends StatelessWidget {
               alignment: const Alignment(0.85, -0.6),
               child: GestureDetector(
                 onTap: (){
-                  Provider.of<LoginScreenController>(context, listen: false).isIntro;
+                  Provider.of<LogInController>(context, listen: false).isIntro;
                   Navigator.of(context).pushReplacement(
                     PageTransition(
                       type: PageTransitionType.fade,
                       duration: const Duration(milliseconds: 1000),
-                      child: LoginPage(),
+                      child: LogInPage(),
                     ),
                   );
                 },
@@ -131,12 +131,12 @@ class IntroPage extends StatelessWidget {
                         children: [
                           GestureDetector(
                               onTap: () {
-                                Provider.of<LoginScreenController>(context, listen: false).isintro();
+                                Provider.of<LogInController>(context, listen: false).isintro();
                                 Navigator.of(context).pushReplacement(
                                   PageTransition(
                                     type: PageTransitionType.fade,
                                     duration: const Duration(milliseconds: 1000),
-                                    child: const IntroPage2(),
+                                    child: const IntroScreen2(),
                                   ),
                                 );
                               },

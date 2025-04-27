@@ -5,12 +5,12 @@ import 'package:provider/provider.dart';
 
 import '../../controller/login_controller.dart';
 import '../../utility/animation/fade_animation_controller.dart';
-import 'intro_screen.dart';
+import 'intro_screen_1.dart';
 import 'intro_screen_3.dart';
 import 'login_page.dart';
 
-class IntroPage2 extends StatelessWidget {
-  const IntroPage2({Key? key}) : super(key: key);
+class IntroScreen2 extends StatelessWidget {
+  const IntroScreen2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +34,12 @@ class IntroPage2 extends StatelessWidget {
               alignment: const Alignment(0.85, -0.6),
               child: GestureDetector(
                 onTap: (){
-                  Provider.of<LoginScreenController>(context, listen: false).isintro();
+                  Provider.of<LogInController>(context, listen: false).isintro();
                   Navigator.of(context).pushReplacement(
                     PageTransition(
                       type: PageTransitionType.fade,
                       duration: const Duration(milliseconds: 1000),
-                      child: LoginPage(),
+                      child: LogInPage(),
                     ),
                   );
                 },
@@ -141,7 +141,7 @@ class IntroPage2 extends StatelessWidget {
                                   PageTransition(
                                     type: PageTransitionType.fade,
                                     duration: const Duration(milliseconds: 1000),
-                                    child: const IntroPage(),
+                                    child: const IntroScreen1(),
                                   ),
                                 );
                               },
@@ -156,12 +156,12 @@ class IntroPage2 extends StatelessWidget {
                               )),
                           GestureDetector(
                               onTap: () {
-                                Provider.of<LoginScreenController>(context, listen: false).isintro();
+                                Provider.of<LogInController>(context, listen: false).isintro();
                                 Navigator.of(context).pushReplacement(
                                   PageTransition(
                                     type: PageTransitionType.fade,
                                     duration: const Duration(milliseconds: 1000),
-                                    child: const IntroPage3(),
+                                    child: const IntroScreen3(),
                                   ),
                                 );
                               },

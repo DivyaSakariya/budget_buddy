@@ -22,7 +22,7 @@ import '../../controller/login_controller.dart';
 import '../../controller/transaction_controller.dart';
 import '../../controller/savings_controller.dart';
 import '../../controller/user_controller.dart';
-import '../../helper/database_helper.dart';
+import '../../helper/db_helper.dart';
 import '../../modal/chart_modal.dart';
 import '../../modal/transaction_modal.dart';
 import '../../utility/animation/fade_animation_controller.dart';
@@ -56,11 +56,11 @@ class ProfilePage extends StatelessWidget {
 
     final pw.Document pdf = pw.Document();
 
-    List<ChartData> chartData = [
-      ChartData('Income : ${income.toStringAsFixed(2)}', income, Colors.green),
-      ChartData(
+    List<ChartModal> chartModal = [
+      ChartModal('Income : ${income.toStringAsFixed(2)}', income, Colors.green),
+      ChartModal(
           'Savings : ${savings.toStringAsFixed(2)}', savings, Colors.blue),
-      ChartData('Expense : ${expanse.toStringAsFixed(2)}', expanse, Colors.red),
+      ChartModal('Expense : ${expanse.toStringAsFixed(2)}', expanse, Colors.red),
     ];
 
 
@@ -182,14 +182,14 @@ class ProfilePage extends StatelessWidget {
                               height: '150%',
                               position: LegendPosition.right,
                             ),
-                            series: <RadialBarSeries<ChartData, String>>[
-                              RadialBarSeries<ChartData, String>(
-                                dataSource: chartData,
-                                xValueMapper: (ChartData data, _) =>
+                            series: <RadialBarSeries<ChartModal, String>>[
+                              RadialBarSeries<ChartModal, String>(
+                                dataSource: chartModal,
+                                xValueMapper: (ChartModal data, _) =>
                                     data.category,
-                                yValueMapper: (ChartData data, _) =>
+                                yValueMapper: (ChartModal data, _) =>
                                     data.amount,
-                                pointColorMapper: (ChartData data, _) =>
+                                pointColorMapper: (ChartModal data, _) =>
                                     data.color,
                                 enableTooltip: true,
                                 radius: '110%',
@@ -883,13 +883,13 @@ class ProfilePage extends StatelessWidget {
                           btnOkOnPress: () async {
                             Provider.of<UserController>(context, listen: false).logoutUser();
                             await DbHelper.dbHelper.initDB();
-                            await Provider.of<LoginScreenController>(context,listen: false).islogout();
+                            await Provider.of<LogInController>(context,listen: false).islogout();
                             Navigator.of(context).pushReplacement(
                                 PageTransition(
                                   type: PageTransitionType.size,
                                   duration: const Duration(seconds: 1),
                                   alignment: Alignment.bottomCenter,
-                                  child: LoginPage(),
+                                  child: LogInPage(),
                                 ));
                           },
                         ).show();

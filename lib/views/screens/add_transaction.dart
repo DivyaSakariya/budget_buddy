@@ -8,7 +8,7 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import '../../controller/category_controller.dart';
 import '../../controller/transaction_controller.dart';
-import '../../helper/database_helper.dart';
+import '../../helper/db_helper.dart';
 import '../../modal/transaction_modal.dart';
 import '../../utility/animation/fade_animation_controller.dart';
 

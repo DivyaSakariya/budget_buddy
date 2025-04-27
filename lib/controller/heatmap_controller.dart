@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../controller/transaction_controller.dart';
 import '../modal/transaction_modal.dart';
 
-class HeatmapController with ChangeNotifier {
+class HeatMapController with ChangeNotifier {
   Map<DateTime, int> dateColorMap = {
     DateTime(2022, 1, 1): 1,
   };

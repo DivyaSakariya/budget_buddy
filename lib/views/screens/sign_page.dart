@@ -11,7 +11,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../../controller/user_controller.dart';
-import '../../helper/database_helper.dart';
+import '../../helper/db_helper.dart';
 import '../../modal/user_modal.dart';
 import '../../utility/animation/fade_animation_controller.dart';
 import '../../utility/animation/loop_controller.dart';
@@ -364,7 +364,7 @@ class SingUpPage extends StatelessWidget {
                                     type: PageTransitionType.scale,
                                     alignment: Alignment
                                         .bottomCenter, // or any other alignment
-                                    child: LoginPage(),
+                                    child: LogInPage(),
                                   ));
                             }
                             stopLoading();
@@ -393,7 +393,7 @@ class SingUpPage extends StatelessWidget {
                                 Navigator.of(context).push(
                                   PageTransition(
                                     type: PageTransitionType.fade,
-                                    child: LoginPage(),
+                                    child: LogInPage(),
                                   ),
                                 );
                               },

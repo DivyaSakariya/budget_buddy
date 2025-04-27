@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreenController extends ChangeNotifier {
+class LogInController extends ChangeNotifier {
   bool isLogin = false;
   bool isIntro = false;
 
-  LoginScreenController({required this.isLogin, required this.isIntro});
+  LogInController({required this.isLogin, required this.isIntro});
 
    islogin() async {
     isLogin = true;

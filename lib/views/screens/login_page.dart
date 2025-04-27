@@ -9,14 +9,14 @@ import 'package:provider/provider.dart';
 import '../../controller/login_controller.dart';
 import '../../controller/transaction_controller.dart';
 import '../../controller/user_controller.dart';
-import '../../helper/database_helper.dart';
+import '../../helper/db_helper.dart';
 import '../../utility/animation/fade_animation_controller.dart';
 import '../../utility/animation/loop_controller.dart';
 import 'home_page.dart';
 import 'sign_page.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LogInPage extends StatelessWidget {
+  LogInPage({super.key});
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -219,7 +219,7 @@ class LoginPage extends StatelessWidget {
                                     await Provider.of<UserController>(context,listen: false).init();
                                     await DbHelper.dbHelper.initDB();
                                     await Provider.of<TransactionController>(context,listen: false).init();
-                                    await Provider.of<LoginScreenController>(context,listen: false).islogin();
+                                    await Provider.of<LogInController>(context,listen: false).islogin();
                                     Navigator.of(context).pushReplacement(
                                       PageTransition(
                                         type: PageTransitionType.scale,

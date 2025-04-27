@@ -11,7 +11,7 @@ import 'controller/pageindex_controller.dart';
 import 'controller/savings_controller.dart';
 import 'controller/transaction_controller.dart';
 import 'controller/user_controller.dart';
-import 'helper/database_helper.dart';
+import 'helper/db_helper.dart';
 import 'utility/colors.dart';
 
 Future<void> main() async {
@@ -25,13 +25,13 @@ Future<void> main() async {
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => UserController(),),
       ChangeNotifierProvider(create: (context) => CategoryController(),),
-      ChangeNotifierProvider(create: (context) => HeatmapController(),),
+      ChangeNotifierProvider(create: (context) => HeatMapController(),),
       ChangeNotifierProvider(create: (context) => ApiController(),),
       ChangeNotifierProvider(create: (context) => SavingsController(),),
       ChangeNotifierProvider(create: (context) => PageIndexController(),),
       ChangeNotifierProvider(create: (context) => TransactionController(),),
       ChangeNotifierProvider(
-        create: (context) => LoginScreenController(isLogin: isLogin, isIntro: isIntro),
+        create: (context) => LogInController(isLogin: isLogin, isIntro: isIntro),
       ),
     ], child: MyApp()),
   );
