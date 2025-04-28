@@ -11,7 +11,7 @@ import '../modal/user_modal.dart';
 class UserController extends ChangeNotifier {
   List<UserModal> user = [];
   late bool isPasswordVisible;
-  late bool isconfirmPasswordVisible;
+  late bool isConfirmPasswordVisible;
   Logger l = Logger();
   String? username;
   String? email;
@@ -21,7 +21,7 @@ class UserController extends ChangeNotifier {
     init();
 
     isPasswordVisible = false;
-    isconfirmPasswordVisible = false;
+    isConfirmPasswordVisible = false;
   }
 
   init() async {
@@ -76,8 +76,8 @@ class UserController extends ChangeNotifier {
     notifyListeners();
   }
 
-  toggleconfirmPasswordVisibility() {
-    isconfirmPasswordVisible = !isconfirmPasswordVisible;
+  toggleConfirmPasswordVisibility() {
+    isConfirmPasswordVisible = !isConfirmPasswordVisible;
     notifyListeners();
   }
 }

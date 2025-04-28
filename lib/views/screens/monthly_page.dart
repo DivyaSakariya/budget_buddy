@@ -157,7 +157,7 @@ class MonthlyPage extends StatelessWidget {
                       TransactionModal tran = tra.transactionList[index];
                       return FadeAnimation(
                         1+index.toDouble() % index>5?7:index.toDouble()/5 ,20, Tile(tital:tran.description , subtital:tran.date , image:'assets/images/${tran.category}.png' , color: Colors.primaries[Random().nextInt(Colors.primaries.length)], amount: Text(
-                        "  ${tran.type == "INCOME" ? '+' : '-'} ₹${tran.amount}",style: TextStyle(fontSize: 16,color: tran.type == 'INCOME' ?Colors.greenAccent :Colors.red ),), ),
+                        "  ${tran.type == "INCOME" ? '+' : '-'} ₹${tran.amount}",style: TextStyle(fontSize: 16,color: tran.type == 'INCOME' ?Colors.green :Colors.red ),), ),
                       );
                     });
                   }

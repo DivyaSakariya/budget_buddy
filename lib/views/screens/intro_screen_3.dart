@@ -122,7 +122,7 @@ class IntroScreen3 extends StatelessWidget {
                         AnimatedTextKit(
                           animatedTexts: [
                             TyperAnimatedText(
-                              "BudgetBuddy: Crafting your financial success journey with every dream realized and goal conquered.",
+                              "BudgetBuddy: Empowering your financial journey. We help you turn dreams into reality and goals into achievements—shaping your success, every step of the way.",
                               textStyle: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,

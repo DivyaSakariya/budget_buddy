@@ -101,6 +101,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   'Master your money, master your life',
                   textStyle: const TextStyle(fontSize: 18, color: third),
                   textAlign: TextAlign.center,
+                  speed: const Duration(milliseconds: 50),
                 ),
               ],
               totalRepeatCount: 1,

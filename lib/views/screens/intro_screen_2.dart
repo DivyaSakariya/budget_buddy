@@ -123,7 +123,7 @@ class IntroScreen2 extends StatelessWidget {
                         AnimatedTextKit(
                           animatedTexts: [
                             TyperAnimatedText(
-                              " BudgetBuddy's commitment to precision ensures your financial journey is marked by clarity and success. Trust in simplicity, trust in BudgetBuddy.",
+                              "Precision you can trust. At BudgetBuddy, our commitment to accuracy guarantees that your financial journey is guided by clarity, confidence, and lasting success.",
                               textStyle: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,

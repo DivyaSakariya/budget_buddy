@@ -125,7 +125,7 @@ class IntroScreen1 extends StatelessWidget {
                         AnimatedTextKit(
                           animatedTexts: [
                             TyperAnimatedText(
-                              'Experience financial freedom without the complexity. BudgetBuddy simplifies your journey to economic empowerment, making every step clear and effortless.',
+                              'Experience financial freedom with ease. BudgetBuddy streamlines your path to economic empowerment, ensuring every step is simple, clear, and stress-free.',
                               textStyle: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,

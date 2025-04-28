@@ -1,4 +1,7 @@
+import 'package:budget_buddy/views/screens/home_page.dart';
 import 'package:budget_buddy/views/screens/intro_screen_1.dart';
+import 'package:budget_buddy/views/screens/login_page.dart';
+import 'package:budget_buddy/views/screens/signup_page.dart';
 import 'package:budget_buddy/views/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

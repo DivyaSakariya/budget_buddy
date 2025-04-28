@@ -331,9 +331,9 @@ class SavingPage extends StatelessWidget {
                     end: Alignment(1.0, 1.0),
                     stops: [-0.1, 0.35, 1],
                     colors: [
-                      Colors.white,
-                      Colors.blueAccent,
-                      Color(0xFF6101FF),
+                      Color(0xFFF3E5F5),
+                      Color(0xFF9C27B0),
+                      Color(0xFF4A148C),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(12)),

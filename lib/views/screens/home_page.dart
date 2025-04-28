@@ -14,7 +14,7 @@ import 'add_transaction.dart';
 import 'monthly_page.dart';
 import 'recent_page.dart';
 import 'saving_page.dart';
-import 'week_page.dart';
+import 'profile_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
           }
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
+          child: Icon(Icons.add,color: third,),
           shape: CircleBorder(),
           backgroundColor: secondary,
           onPressed: () async {
@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
               PageTransition(
                 type: PageTransitionType.scale,
                 alignment: Alignment.bottomCenter, // or any other alignment
-                child: AddTransactionePage(),
+                child: AddTransactionPage(),
               ),
             );
             l.t("${Provider.of<UserController>(context, listen: false).username} \n ${Provider.of<UserController>(context, listen: false).email} \n   ${Provider.of<UserController>(context, listen: false).total}");

@@ -23,6 +23,7 @@ import '../../controller/user_controller.dart';
 import '../../helper/db_helper.dart';
 import '../../modal/transaction_modal.dart';
 import '../../utility/animation/fade_animation_controller.dart';
+import '../../utility/colors.dart';
 import '../component/setting_tile.dart';
 import '../component/tran_tile.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -31,7 +32,7 @@ import 'history_page.dart';
 import 'login_page.dart';
 import 'monthly_page.dart';
 import 'saving_page.dart';
-import 'week_page.dart';
+import 'profile_page.dart';
 
 class RecentPage extends StatelessWidget {
   const RecentPage({super.key});
@@ -52,8 +53,8 @@ class RecentPage extends StatelessWidget {
     SavingsController sav =
         Provider.of<SavingsController>(context, listen: false);
 
-    double expanse = transactionController.transactionList
-        .where((expense) => expense.type == "EXPANSE")
+    double expense = transactionController.transactionList
+        .where((expense) => expense.type == "EXPENSE")
         .fold(0.0, (sum, expense) => sum + (expense.amount ?? 0.0));
 
     double income = transactionController.transactionList
@@ -129,7 +130,7 @@ class RecentPage extends StatelessWidget {
                 child: Consumer<TransactionController>(
                     builder: (context, transactionController, child) {
                   double etotal = transactionController.transactionList
-                      .where((expense) => expense.type == "EXPANSE")
+                      .where((expense) => expense.type == "EXPENSE")
                       .fold(0.0, (sum, income) => sum + (income.amount ?? 0.0));
 
                   double itotal = transactionController.transactionList
@@ -153,7 +154,7 @@ class RecentPage extends StatelessWidget {
                                       height: 18,
                                       width: 5,
                                       decoration: BoxDecoration(
-                                          color: const Color(0xffB6DAAE),
+                                          color: green,
                                           borderRadius:
                                               BorderRadius.circular(18)),
                                     ),
@@ -186,14 +187,14 @@ class RecentPage extends StatelessWidget {
                                       height: 18,
                                       width: 5,
                                       decoration: BoxDecoration(
-                                          color: const Color(0xffFEB9AA),
+                                          color: red,
                                           borderRadius:
                                               BorderRadius.circular(18)),
                                     ),
                                     const SizedBox(
                                       width: 14,
                                     ),
-                                    const Text('Spant',
+                                    const Text('Expense',
                                         style: TextStyle(fontSize: 18)),
                                   ],
                                 ),
@@ -222,14 +223,14 @@ class RecentPage extends StatelessWidget {
                           PieChartData(
                             sections: [
                               PieChartSectionData(
-                                color: const Color(0xffB6DAAE),
+                                color: green,
                                 title: '',
                                 value:
                                     Provider.of<UserController>(context).total,
                                 radius: 40,
                               ),
                               PieChartSectionData(
-                                color: const Color(0xffFEB9AA),
+                                color: red,
                                 value: etotal,
                                 title: '',
                                 radius: 40,
@@ -335,7 +336,7 @@ class RecentPage extends StatelessWidget {
                                 style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   color: tran.type == 'INCOME'
-                                      ? Colors.greenAccent
+                                      ? Colors.green
                                       : Colors.red,
                                 ),
                               ),
@@ -488,7 +489,7 @@ class RecentPage extends StatelessWidget {
                     type: PageTransitionType.leftToRightWithFade,
                     duration: const Duration(seconds: 1),
                     alignment: Alignment.bottomCenter, // or any other alignment
-                    child: AddTransactionePage(),
+                    child: AddTransactionPage(),
                   ),
                 );
               },
@@ -498,7 +499,7 @@ class RecentPage extends StatelessWidget {
                     type: PageTransitionType.leftToRightWithFade,
                     duration: const Duration(seconds: 1),
                     alignment: Alignment.bottomCenter, // or any other alignment
-                    child: AddTransactionePage(),
+                    child: AddTransactionPage(),
                   ),
                 );
               },
@@ -691,7 +692,7 @@ class RecentPage extends StatelessWidget {
                                                         fontWeight: pw
                                                             .FontWeight.bold)),
                                                 pw.Text(
-                                                    '${(user.total ?? 25000) - expanse + income}',
+                                                    '${(user.total ?? 25000) - expense + income}',
                                                     style: pw.TextStyle(
                                                         color: PdfColors.grey,
                                                         fontSize: 20,
@@ -864,7 +865,7 @@ class RecentPage extends StatelessWidget {
                                                       width: 110,
                                                       color: PdfColors.black),
                                                   pw.SizedBox(height: 05),
-                                                  pw.Text('$expanse',
+                                                  pw.Text('$expense',
                                                       style: pw.TextStyle(
                                                           color: PdfColors.red,
                                                           fontSize: 18,
@@ -908,7 +909,7 @@ class RecentPage extends StatelessWidget {
                                                 )),
                                             pw.SizedBox(width: 35),
                                             pw.Text(
-                                                '${income - expanse + savings}',
+                                                '${income - expense + savings}',
                                                 style: pw.TextStyle(
                                                     color: PdfColors.black,
                                                     fontSize: 18,
@@ -1134,7 +1135,7 @@ class RecentPage extends StatelessWidget {
                                                         fontWeight: pw
                                                             .FontWeight.bold)),
                                                 pw.Text(
-                                                    '${(user.total ?? 25000) - expanse + income}',
+                                                    '${(user.total ?? 25000) - expense + income}',
                                                     style: pw.TextStyle(
                                                         color: PdfColors.grey,
                                                         fontSize: 20,
@@ -1307,7 +1308,7 @@ class RecentPage extends StatelessWidget {
                                                       width: 110,
                                                       color: PdfColors.black),
                                                   pw.SizedBox(height: 05),
-                                                  pw.Text('$expanse',
+                                                  pw.Text('$expense',
                                                       style: pw.TextStyle(
                                                           color: PdfColors.red,
                                                           fontSize: 18,
@@ -1351,7 +1352,7 @@ class RecentPage extends StatelessWidget {
                                                 )),
                                             pw.SizedBox(width: 35),
                                             pw.Text(
-                                                '${income - expanse + savings}',
+                                                '${income - expense + savings}',
                                                 style: pw.TextStyle(
                                                     color: PdfColors.black,
                                                     fontSize: 18,
