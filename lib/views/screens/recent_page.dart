@@ -50,8 +50,10 @@ class RecentPage extends StatelessWidget {
     });
     Size size = MediaQuery.of(context).size;
 
-    SavingsController sav =
-        Provider.of<SavingsController>(context, listen: false);
+    SavingsController sav = Provider.of<SavingsController>(
+      context,
+      listen: false,
+    );
 
     double expense = transactionController.transactionList
         .where((expense) => expense.type == "EXPENSE")
@@ -61,22 +63,24 @@ class RecentPage extends StatelessWidget {
         .where((income) => income.type == "INCOME")
         .fold(0.0, (sum, income) => sum + (income.amount ?? 0.0));
 
-    double savings = sav.transactionListGoal
-        .fold(0, (previousValue, element) => previousValue + element.amount!);
+    double savings = sav.transactionListGoal.fold(
+      0,
+      (previousValue, element) => previousValue + element.amount!,
+    );
 
     final pw.Document pdf = pw.Document();
     return Scaffold(
       appBar: AppBar(
         title: Row(
           children: [
-            const Text(
-              'Hi,',
-              style: TextStyle(fontSize: 24, letterSpacing: 1),
-            ),
+            const Text('Hi,', style: TextStyle(fontSize: 24, letterSpacing: 1)),
             Text(
               '${user.username ?? ''}',
               style: const TextStyle(
-                  fontSize: 24, letterSpacing: 1, fontWeight: FontWeight.bold),
+                fontSize: 24,
+                letterSpacing: 1,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),
@@ -117,18 +121,20 @@ class RecentPage extends StatelessWidget {
         ],
       ),
       body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Container(
-                height: size.height * 0.26,
-                decoration: BoxDecoration(
-                    color: const Color(0xE7E0DFEC),
-                    borderRadius: BorderRadius.circular(12)),
-                child: Consumer<TransactionController>(
-                    builder: (context, transactionController, child) {
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Container(
+              height: size.height * 0.26,
+              width: size.width,
+              decoration: BoxDecoration(
+                color: const Color(0xE7E0DFEC),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Consumer<TransactionController>(
+                builder: (context, transactionController, child) {
                   double etotal = transactionController.transactionList
                       .where((expense) => expense.type == "EXPENSE")
                       .fold(0.0, (sum, income) => sum + (income.amount ?? 0.0));
@@ -136,1316 +142,1620 @@ class RecentPage extends StatelessWidget {
                   double itotal = transactionController.transactionList
                       .where((expense) => expense.type == "INCOME")
                       .fold(0.0, (sum, income) => sum + (income.amount ?? 0.0));
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 24.0,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 18,
-                                      width: 5,
-                                      decoration: BoxDecoration(
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          children: [
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 24.0),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 18,
+                                        width: 5,
+                                        decoration: BoxDecoration(
                                           color: green,
-                                          borderRadius:
-                                              BorderRadius.circular(18)),
-                                    ),
-                                    const Text('\t\t\tIncome',
-                                        style: TextStyle(fontSize: 18)),
-                                  ],
+                                          borderRadius: BorderRadius.circular(
+                                            18,
+                                          ),
+                                        ),
+                                      ),
+                                      const Text(
+                                        '\t\t\tIncome',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 30),
-                                child: Consumer<UserController>(
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 30),
+                                  child: Consumer<UserController>(
                                     builder: (context, value, child) {
-                                  return Text(
-                                    '₹ ${(value.total ?? 25000) - etotal + itotal}',
-                                    style: const TextStyle(fontSize: 26),
-                                  );
-                                }),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 24.0,
+                                      return Text(
+                                        '₹ ${(value.total ?? 25000) - etotal + itotal}',
+                                        style: const TextStyle(fontSize: 26),
+                                      );
+                                    },
+                                  ),
                                 ),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 18,
-                                      width: 5,
-                                      decoration: BoxDecoration(
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 24.0),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 18,
+                                        width: 5,
+                                        decoration: BoxDecoration(
                                           color: red,
-                                          borderRadius:
-                                              BorderRadius.circular(18)),
-                                    ),
-                                    const SizedBox(
-                                      width: 14,
-                                    ),
-                                    const Text('Expense',
-                                        style: TextStyle(fontSize: 18)),
-                                  ],
+                                          borderRadius: BorderRadius.circular(
+                                            18,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 14),
+                                      const Text(
+                                        'Expense',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 30),
-                                child: Text(
-                                  '₹ ${etotal}',
-                                  style: const TextStyle(fontSize: 26),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 30),
+                                  child: Text(
+                                    '₹ ${etotal}',
+                                    style: const TextStyle(fontSize: 26),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: size.width * 0.04,
-                      ),
-                      SizedBox(
-                        height: 150,
-                        width: 150,
-                        child: PieChart(
-                          swapAnimationCurve: Curves.easeInOut,
-                          swapAnimationDuration:
-                              const Duration(milliseconds: 3000),
-                          PieChartData(
-                            sections: [
-                              PieChartSectionData(
-                                color: green,
-                                title: '',
-                                value:
-                                    Provider.of<UserController>(context).total,
-                                radius: 40,
-                              ),
-                              PieChartSectionData(
-                                color: red,
-                                value: etotal,
-                                title: '',
-                                radius: 40,
-                              ),
-                            ],
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: size.width * 0.04),
+                        SizedBox(
+                          height: 150,
+                          width: 150,
+                          child: PieChart(
+                            swapAnimationCurve: Curves.easeInOut,
+                            swapAnimationDuration: const Duration(
+                              milliseconds: 3000,
+                            ),
+                            PieChartData(
+                              sections: [
+                                PieChartSectionData(
+                                  color: green,
+                                  title: '',
+                                  value:
+                                      Provider.of<UserController>(
+                                        context,
+                                      ).total,
+                                  radius: 40,
+                                ),
+                                PieChartSectionData(
+                                  color: red,
+                                  value: etotal,
+                                  title: '',
+                                  radius: 40,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: size.width * 0.02,
-                      ),
-                    ],
+                        SizedBox(width: size.width * 0.02),
+                      ],
+                    ),
                   );
-                }),
+                },
               ),
             ),
-            FadeAnimation(
-              2.5,
-              0,
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  bottom: 8,
-                  left: 24,
-                ),
-                child: Text(
-                  'Recent Transactions',
-                  style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w600, fontSize: 16),
+          ),
+          FadeAnimation(
+            2.5,
+            0,
+            Padding(
+              padding: const EdgeInsets.only(top: 8, bottom: 8, left: 24),
+              child: Text(
+                'Recent Transactions',
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
                 ),
               ),
             ),
-            Consumer<TransactionController>(builder: (context, pro, child) {
+          ),
+          Consumer<TransactionController>(
+            builder: (context, pro, child) {
               return Expanded(
-                child: pro.transactionList.isEmpty ? Center(  child: Text("No Transactions Yet",style: TextStyle(fontSize: 20,color: Colors.grey,fontWeight: FontWeight.bold),) ): ListView.builder(
-                    itemCount: pro.transactionList.length,
-                    itemBuilder: (context, index) {
-                      TransactionModal tran = pro.transactionList[index];
-                      return FadeAnimation(
-                          1 + index.toDouble() % index > 3
-                              ? 5
-                              : index.toDouble(),
-                          20,
-                          Dismissible(
-                            key: UniqueKey(),
-                            direction: DismissDirection.endToStart,
-                            confirmDismiss: (direction) async {
-                              return await AwesomeDialog(
-                                context: context,
-                                dialogType: DialogType.warning,
-                                headerAnimationLoop: false,
-                                animType: AnimType.scale,
-                                title: 'Warning',
-                                desc:
-                                'Are you sure you want to delete the item',
-                                btnCancelOnPress: () {
-                                  pro.init();
+                child:
+                    pro.transactionList.isEmpty
+                        ? Center(
+                          child: Text(
+                            "No Transactions Yet",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                        : ListView.builder(
+                          itemCount: pro.transactionList.length,
+                          itemBuilder: (context, index) {
+                            TransactionModal tran = pro.transactionList[index];
+                            return FadeAnimation(
+                              1 + index.toDouble() % index > 3
+                                  ? 5
+                                  : index.toDouble(),
+                              20,
+                              Dismissible(
+                                key: UniqueKey(),
+                                direction: DismissDirection.endToStart,
+                                confirmDismiss: (direction) async {
+                                  return await AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.warning,
+                                    headerAnimationLoop: false,
+                                    animType: AnimType.scale,
+                                    title: 'Warning',
+                                    desc:
+                                        'Are you sure you want to delete the item',
+                                    btnCancelOnPress: () {
+                                      pro.init();
+                                    },
+                                    btnOkOnPress: () async {
+                                      await DbHelper.dbHelper.deleteTransaction(
+                                        id: tran.id ?? 0,
+                                      );
+                                      pro.init();
+                                    },
+                                  ).show();
                                 },
-                                btnOkOnPress: () async {
-                                  await DbHelper.dbHelper
-                                      .deleteTransaction(id: tran.id ?? 0);
+                                movementDuration: Duration(seconds: 1),
+                                onDismissed: (direction) async {
+                                  await DbHelper.dbHelper.deleteTransaction(
+                                    id: tran.id ?? 0,
+                                  );
                                   pro.init();
+                                  print('Item dismissed');
                                 },
-                              )
-                                  .show();
-                            },
-                            movementDuration: Duration(seconds: 1),
-                            onDismissed: (direction) async {
-                              await DbHelper.dbHelper
-                                  .deleteTransaction(id: tran.id ?? 0);
-                              pro.init();
-                              print('Item dismissed');
-                            },
-                            background: Container(
-                              color:
-                              Colors.red,
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.delete,
-                                    color: Colors.white,
+                                background: Container(
+                                  color: Colors.red,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.delete, color: Colors.white),
+                                      Text(
+                                        'Delete',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    'Delete',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    )
+                                ),
+                                child: Tile(
+                                  tital: tran.description,
+                                  subtital: tran.date,
+                                  image: 'assets/images/${tran.category}.png',
+                                  color:
+                                      Colors.primaries[Random().nextInt(
+                                        Colors.primaries.length,
+                                      )],
+                                  amount: Text(
+                                    "  ${tran.type == "INCOME" ? '+' : '-'} ₹${tran.amount}",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      color:
+                                          tran.type == 'INCOME'
+                                              ? Colors.green
+                                              : Colors.red,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+              );
+            },
+          ),
+        ],
+      ),
+
+      drawer: Drawer(
+        child: Column(
+          children: [
+            const SizedBox(height: 80),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.black,
+                  radius: 52,
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundImage: MemoryImage(user.image ?? Uint8List(0)),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  user.username ?? 'User',
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                  ),
+                ),
+                Text(
+                  'Current Balance:  ${user.total}' ?? '25000',
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                    color: Colors.black.withOpacity(0.6),
+                  ),
+                ),
+                Text(
+                  user.email ?? 'user123@gmail.com',
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Container(height: 1, color: Colors.black, width: 300),
+            Padding(
+              padding: const EdgeInsets.only(top: 18.0, left: 10),
+              child: SettingTile(
+                titel: 'Profile',
+                icon: FluentIcons.person_24_regular,
+                onButtonPressed: () {
+                  Navigator.of(context).push(
+                    PageTransition(
+                      type: PageTransitionType.leftToRightWithFade,
+                      duration: const Duration(seconds: 1),
+                      alignment:
+                          Alignment.bottomCenter, // or any other alignment
+                      child: ProfilePage(),
+                    ),
+                  );
+                },
+                onTilePressed: () {
+                  Navigator.of(context).push(
+                    PageTransition(
+                      type: PageTransitionType.leftToRightWithFade,
+                      duration: const Duration(seconds: 1),
+                      alignment:
+                          Alignment.bottomCenter, // or any other alignment
+                      child: ProfilePage(),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: SettingTile(
+                titel: 'Savings',
+                icon: FluentIcons.wallet_24_regular,
+                onButtonPressed: () {
+                  Navigator.of(context).push(
+                    PageTransition(
+                      type: PageTransitionType.leftToRightWithFade,
+                      duration: const Duration(seconds: 1),
+                      alignment:
+                          Alignment.bottomCenter, // or any other alignment
+                      child: SavingPage(),
+                    ),
+                  );
+                },
+                onTilePressed: () {
+                  Navigator.of(context).push(
+                    PageTransition(
+                      type: PageTransitionType.leftToRightWithFade,
+                      duration: const Duration(seconds: 1),
+                      alignment:
+                          Alignment.bottomCenter, // or any other alignment
+                      child: SavingPage(),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: SettingTile(
+                titel: 'Monthly Report',
+                icon: FluentIcons.calendar_28_regular,
+                onButtonPressed: () {
+                  Navigator.of(context).push(
+                    PageTransition(
+                      type: PageTransitionType.leftToRightWithFade,
+                      duration: const Duration(seconds: 1),
+                      alignment:
+                          Alignment.bottomCenter, // or any other alignment
+                      child: MonthlyPage(),
+                    ),
+                  );
+                },
+                onTilePressed: () {
+                  Navigator.of(context).push(
+                    PageTransition(
+                      type: PageTransitionType.leftToRightWithFade,
+                      duration: const Duration(seconds: 1),
+                      alignment:
+                          Alignment.bottomCenter, // or any other alignment
+                      child: MonthlyPage(),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: SettingTile(
+                titel: 'Add Transaction',
+                icon: FluentIcons.add_square_multiple_24_regular,
+                onButtonPressed: () {
+                  Navigator.of(context).push(
+                    PageTransition(
+                      type: PageTransitionType.leftToRightWithFade,
+                      duration: const Duration(seconds: 1),
+                      alignment:
+                          Alignment.bottomCenter, // or any other alignment
+                      child: AddTransactionPage(),
+                    ),
+                  );
+                },
+                onTilePressed: () {
+                  Navigator.of(context).push(
+                    PageTransition(
+                      type: PageTransitionType.leftToRightWithFade,
+                      duration: const Duration(seconds: 1),
+                      alignment:
+                          Alignment.bottomCenter, // or any other alignment
+                      child: AddTransactionPage(),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: SettingTile(
+                titel: 'Transaction History',
+                icon: FluentIcons.apps_list_detail_24_regular,
+                onButtonPressed: () {
+                  Navigator.of(context).push(
+                    PageTransition(
+                      type: PageTransitionType.leftToRightWithFade,
+                      duration: const Duration(seconds: 1),
+                      alignment:
+                          Alignment.bottomCenter, // or any other alignment
+                      child: HistoryPage(),
+                    ),
+                  );
+                },
+                onTilePressed: () {
+                  Navigator.of(context).push(
+                    PageTransition(
+                      type: PageTransitionType.leftToRightWithFade,
+                      duration: const Duration(seconds: 1),
+                      alignment:
+                          Alignment.bottomCenter, // or any other alignment
+                      child: HistoryPage(),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: SettingTile(
+                titel: 'Export Data',
+                icon: FluentIcons.document_pdf_24_regular,
+                onButtonPressed: () async {
+                  UserController user = Provider.of<UserController>(
+                    context,
+                    listen: false,
+                  );
+                  String date =
+                      '${DateFormat('dd/MM/yyyy').format(DateTime.now())}';
+
+                  String time =
+                      '${TimeOfDay.now().hour % 12}:${TimeOfDay.now().minute}';
+                  final logoImage = pw.MemoryImage(
+                    (await rootBundle.load(
+                      "assets/images/AppIcon.png",
+                    )).buffer.asUint8List(),
+                  );
+                  final image = pw.MemoryImage((user.image ?? Uint8List(0)));
+
+                  pdf.addPage(
+                    pw.MultiPage(
+                      margin: const pw.EdgeInsets.all(10),
+                      pageFormat: PdfPageFormat.a4,
+                      build: (pw.Context context) {
+                        return <pw.Widget>[
+                          pw.Column(
+                            children: [
+                              pw.Row(
+                                children: [
+                                  pw.Column(
+                                    mainAxisAlignment:
+                                        pw.MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      pw.Container(
+                                        color: PdfColors.black,
+                                        width: 100,
+                                        height: 50,
+                                        child: pw.Column(),
+                                      ),
+                                      pw.Text(
+                                        "Spandview",
+                                        style: pw.TextStyle(
+                                          color: PdfColors.black,
+                                          fontSize: 19,
+                                          fontWeight: pw.FontWeight.bold,
+                                        ),
+                                      ),
+                                      pw.Container(
+                                        color: PdfColors.black,
+                                        width: 100,
+                                        height: 713,
+                                        child: pw.Column(),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.Container(
+                                    child: pw.Column(
+                                      crossAxisAlignment:
+                                          pw.CrossAxisAlignment.start,
+                                      children: [
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 20),
+                                            pw.Row(
+                                              children: [
+                                                pw.Text(
+                                                  'Time : ',
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.black,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                  ),
+                                                ),
+                                                pw.Text(
+                                                  time,
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.grey,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            pw.SizedBox(width: 60),
+                                            pw.Text(
+                                              'Spandview',
+                                              style: pw.TextStyle(
+                                                color: PdfColors.black,
+                                                fontSize: 18,
+                                                fontWeight: pw.FontWeight.bold,
+                                              ),
+                                            ),
+                                            pw.SizedBox(width: 50),
+                                            pw.Row(
+                                              children: [
+                                                pw.Text(
+                                                  'Date : ',
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.black,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                  ),
+                                                ),
+                                                pw.Text(
+                                                  date,
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.grey,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        pw.SizedBox(height: 40),
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 20),
+                                            pw.Column(
+                                              crossAxisAlignment:
+                                                  pw.CrossAxisAlignment.start,
+                                              children: [
+                                                pw.Text(
+                                                  'Spant',
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.black,
+                                                    fontSize: 36,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                    letterSpacing: 2,
+                                                  ),
+                                                ),
+                                                pw.Text(
+                                                  'Report',
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.black,
+                                                    fontSize: 60,
+                                                    fontWeight:
+                                                        pw.FontWeight.normal,
+                                                    letterSpacing: 2,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            pw.SizedBox(width: 140),
+                                            pw.Image(logoImage, height: 100),
+                                          ],
+                                        ),
+                                        pw.SizedBox(height: 30),
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 30),
+                                            pw.Container(
+                                              child: pw.ClipOval(
+                                                child: pw.Image(
+                                                  image,
+                                                  height: 300,
+                                                  width: 160,
+                                                ),
+                                              ),
+                                            ),
+                                            pw.SizedBox(width: 20),
+                                            pw.Column(
+                                              crossAxisAlignment:
+                                                  pw.CrossAxisAlignment.start,
+                                              children: [
+                                                pw.Text(
+                                                  user.username ?? '',
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.black,
+                                                    fontSize: 36,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                  ),
+                                                ),
+                                                pw.SizedBox(height: 15),
+                                                pw.Text(
+                                                  'tushalgopani3@gmail.com',
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.grey,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                  ),
+                                                ),
+                                                pw.SizedBox(height: 10),
+                                                pw.Row(
+                                                  children: [
+                                                    pw.Text(
+                                                      'Current Balance : ',
+                                                      style: pw.TextStyle(
+                                                        color: PdfColors.black,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            pw.FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    pw.Text(
+                                                      '${(user.total ?? 25000) - expense + income}',
+                                                      style: pw.TextStyle(
+                                                        color: PdfColors.grey,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            pw.FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        pw.SizedBox(height: 70),
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 20),
+                                            pw.Column(
+                                              children: [
+                                                pw.Container(
+                                                  height: 2,
+                                                  width: 440,
+                                                  color: PdfColors.black,
+                                                ),
+                                                pw.Row(
+                                                  mainAxisAlignment:
+                                                      pw
+                                                          .MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                    pw.Column(
+                                                      children: [
+                                                        pw.Text(
+                                                          'NO',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '1',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '2',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '3',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                    pw.SizedBox(width: 50),
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                    pw.Column(
+                                                      children: [
+                                                        pw.Text(
+                                                          'Type',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          'Income',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.green,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          'Expanace',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.red,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          'Savings',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.blue,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                    pw.SizedBox(width: 50),
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                    pw.Column(
+                                                      children: [
+                                                        pw.Text(
+                                                          'Amount',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '$income',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.green,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '$expense',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.red,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '$savings',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.blue,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                  ],
+                                                ),
+                                                pw.Container(
+                                                  height: 2,
+                                                  width: 440,
+                                                  color: PdfColors.black,
+                                                ),
+                                                pw.SizedBox(height: 10),
+                                                pw.Row(
+                                                  children: [
+                                                    pw.SizedBox(width: 120),
+                                                    pw.Text(
+                                                      'Total Amount :',
+                                                      style: const pw.TextStyle(
+                                                        color: PdfColors.black,
+                                                        fontSize: 18,
+                                                        letterSpacing: 2,
+                                                      ),
+                                                    ),
+                                                    pw.SizedBox(width: 35),
+                                                    pw.Text(
+                                                      '${income - expense + savings}',
+                                                      style: pw.TextStyle(
+                                                        color: PdfColors.black,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            pw.FontWeight.bold,
+                                                        letterSpacing: 1,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                pw.SizedBox(height: 10),
+                                                pw.Container(
+                                                  height: 2,
+                                                  width: 440,
+                                                  color: PdfColors.black,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        pw.SizedBox(height: 55),
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 20),
+                                            pw.Container(
+                                              child: pw.ConstrainedBox(
+                                                constraints:
+                                                    const pw.BoxConstraints(
+                                                      maxWidth: 450,
+                                                    ),
+                                                child: pw.Text(
+                                                  "          ${user.username} balances income and spending, emphasizing savings for goals. Regular budget reviews ensure financial resilience.",
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.black,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        pw.FontWeight.normal,
+                                                    letterSpacing: 2,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        pw.SizedBox(height: 30),
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 110),
+                                            pw.Text(
+                                              ' Spend Smart, View Success!',
+                                              style: pw.TextStyle(
+                                                color: PdfColors.black,
+                                                fontSize: 18,
+                                                fontWeight: pw.FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
-                            child: Tile(
-                              tital: tran.description,
-                              subtital: tran.date,
-                              image: 'assets/images/${tran.category}.png',
-                              color: Colors.primaries[
-                              Random().nextInt(Colors.primaries.length)],
-                              amount: Text(
-                                "  ${tran.type == "INCOME" ? '+' : '-'} ₹${tran.amount}",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 16,
-                                  color: tran.type == 'INCOME'
-                                      ? Colors.green
-                                      : Colors.red,
-                                ),
-                              ),
-                            ),
-                          ));
-                    }),
-              );
-            }),
-          ]),
+                            ],
+                          ),
+                        ];
+                      },
+                    ),
+                  );
+                  await Printing.layoutPdf(onLayout: (format) => pdf.save());
+                  final output = await getTemporaryDirectory();
+                  final file = File("${output.path}/Spandview-Report.pdf");
+                  await file.writeAsBytes(await pdf.save());
+                },
+                onTilePressed: () async {
+                  UserController user = Provider.of<UserController>(
+                    context,
+                    listen: false,
+                  );
+                  String date =
+                      '${DateFormat('dd/MM/yyyy').format(DateTime.now())}';
 
-      drawer: Drawer(
-        child: Column(children: [
-          const SizedBox(
-            height: 80,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.black,
-                radius: 52,
-                child: CircleAvatar(
-                  radius: 50,
-                  backgroundImage: MemoryImage(user.image ?? Uint8List(0)),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                user.username ?? 'User',
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                ),
-              ),
-              Text(
-                'Current Balance:  ${user.total}' ?? '25000',
-                style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                    color: Colors.black.withOpacity(0.6)),
-              ),
-              Text(
-                user.email ?? 'user123@gmail.com',
-                style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                    color: Colors.grey),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 1,
-            color: Colors.black,
-            width: 300,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 18.0, left: 10),
-            child: SettingTile(
-              titel: 'Profile',
-              icon: FluentIcons.person_24_regular,
-              onButtonPressed: () {
-                Navigator.of(context).push(
-                  PageTransition(
-                    type: PageTransitionType.leftToRightWithFade,
-                    duration: const Duration(seconds: 1),
-                    alignment: Alignment.bottomCenter, // or any other alignment
-                    child: ProfilePage(),
-                  ),
-                );
-              },
-              onTilePressed: () {
-                Navigator.of(context).push(
-                  PageTransition(
-                    type: PageTransitionType.leftToRightWithFade,
-                    duration: const Duration(seconds: 1),
-                    alignment: Alignment.bottomCenter, // or any other alignment
-                    child: ProfilePage(),
-                  ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: SettingTile(
-              titel: 'Savings',
-              icon: FluentIcons.wallet_24_regular,
-              onButtonPressed: () {
-                Navigator.of(context).push(
-                  PageTransition(
-                    type: PageTransitionType.leftToRightWithFade,
-                    duration: const Duration(seconds: 1),
-                    alignment: Alignment.bottomCenter, // or any other alignment
-                    child: SavingPage(),
-                  ),
-                );
-              },
-              onTilePressed: () {
-                Navigator.of(context).push(
-                  PageTransition(
-                    type: PageTransitionType.leftToRightWithFade,
-                    duration: const Duration(seconds: 1),
-                    alignment: Alignment.bottomCenter, // or any other alignment
-                    child: SavingPage(),
-                  ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: SettingTile(
-              titel: 'Monthly Report',
-              icon: FluentIcons.calendar_28_regular,
-              onButtonPressed: () {
-                Navigator.of(context).push(
-                  PageTransition(
-                    type: PageTransitionType.leftToRightWithFade,
-                    duration: const Duration(seconds: 1),
-                    alignment: Alignment.bottomCenter, // or any other alignment
-                    child: MonthlyPage(),
-                  ),
-                );
-              },
-              onTilePressed: () {
-                Navigator.of(context).push(
-                  PageTransition(
-                    type: PageTransitionType.leftToRightWithFade,
-                    duration: const Duration(seconds: 1),
-                    alignment: Alignment.bottomCenter, // or any other alignment
-                    child: MonthlyPage(),
-                  ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: SettingTile(
-              titel: 'Add Transaction',
-              icon: FluentIcons.add_square_multiple_24_regular,
-              onButtonPressed: () {
-                Navigator.of(context).push(
-                  PageTransition(
-                    type: PageTransitionType.leftToRightWithFade,
-                    duration: const Duration(seconds: 1),
-                    alignment: Alignment.bottomCenter, // or any other alignment
-                    child: AddTransactionPage(),
-                  ),
-                );
-              },
-              onTilePressed: () {
-                Navigator.of(context).push(
-                  PageTransition(
-                    type: PageTransitionType.leftToRightWithFade,
-                    duration: const Duration(seconds: 1),
-                    alignment: Alignment.bottomCenter, // or any other alignment
-                    child: AddTransactionPage(),
-                  ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: SettingTile(
-              titel: 'Transaction History',
-              icon: FluentIcons.apps_list_detail_24_regular,
-              onButtonPressed: () {
-                Navigator.of(context).push(
-                  PageTransition(
-                    type: PageTransitionType.leftToRightWithFade,
-                    duration: const Duration(seconds: 1),
-                    alignment: Alignment.bottomCenter, // or any other alignment
-                    child: HistoryPage(),
-                  ),
-                );
-              },
-              onTilePressed: () {
-                Navigator.of(context).push(
-                  PageTransition(
-                    type: PageTransitionType.leftToRightWithFade,
-                    duration: const Duration(seconds: 1),
-                    alignment: Alignment.bottomCenter, // or any other alignment
-                    child: HistoryPage(),
-                  ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: SettingTile(
-              titel: 'Export Data',
-              icon: FluentIcons.document_pdf_24_regular,
-              onButtonPressed: () async {
-                UserController user =
-                    Provider.of<UserController>(context, listen: false);
-                String date =
-                    '${DateFormat('dd/MM/yyyy').format(DateTime.now())}';
+                  String time =
+                      '${TimeOfDay.now().hour % 12}:${TimeOfDay.now().minute}';
+                  final logoImage = pw.MemoryImage(
+                    (await rootBundle.load(
+                      "assets/images/ic_launcher.png",
+                    )).buffer.asUint8List(),
+                  );
+                  final image = pw.MemoryImage((user.image ?? Uint8List(0)));
 
-                String time =
-                    '${TimeOfDay.now().hour % 12}:${TimeOfDay.now().minute}';
-                final logoImage = pw.MemoryImage(
-                  (await rootBundle.load("assets/images/AppIcon.png"))
-                      .buffer
-                      .asUint8List(),
-                );
-                final image = pw.MemoryImage(
-                  (user.image ?? Uint8List(0)),
-                );
-
-                pdf.addPage(
-                  pw.MultiPage(
+                  pdf.addPage(
+                    pw.MultiPage(
                       margin: const pw.EdgeInsets.all(10),
                       pageFormat: PdfPageFormat.a4,
                       build: (pw.Context context) {
                         return <pw.Widget>[
-                          pw.Column(children: [
-                            pw.Row(children: [
-                              pw.Column(
-                                  mainAxisAlignment:
-                                      pw.MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    pw.Container(
-                                      color: PdfColors.black,
-                                      width: 100,
-                                      height: 50,
-                                      child: pw.Column(),
-                                    ),
-                                    pw.Text("Spandview",
-                                        style: pw.TextStyle(
-                                            color: PdfColors.black,
-                                            fontSize: 19,
-                                            fontWeight: pw.FontWeight.bold)),
-                                    pw.Container(
-                                      color: PdfColors.black,
-                                      width: 100,
-                                      height: 713,
-                                      child: pw.Column(),
-                                    ),
-                                  ]),
-                              pw.Container(
-                                child: pw.Column(
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.start,
+                          pw.Column(
+                            children: [
+                              pw.Row(
+                                children: [
+                                  pw.Column(
+                                    mainAxisAlignment:
+                                        pw.MainAxisAlignment.spaceBetween,
                                     children: [
-                                      pw.Row(children: [
-                                        pw.SizedBox(width: 20),
-                                        pw.Row(children: [
-                                          pw.Text('Time : ',
-                                              style: pw.TextStyle(
-                                                  color: PdfColors.black,
-                                                  fontSize: 18,
-                                                  fontWeight:
-                                                      pw.FontWeight.bold)),
-                                          pw.Text(time,
-                                              style: pw.TextStyle(
-                                                  color: PdfColors.grey,
-                                                  fontSize: 18,
-                                                  fontWeight:
-                                                      pw.FontWeight.bold)),
-                                        ]),
-                                        pw.SizedBox(width: 60),
-                                        pw.Text('Spandview',
-                                            style: pw.TextStyle(
-                                                color: PdfColors.black,
-                                                fontSize: 18,
-                                                fontWeight:
-                                                    pw.FontWeight.bold)),
-                                        pw.SizedBox(width: 50),
-                                        pw.Row(children: [
-                                          pw.Text('Date : ',
-                                              style: pw.TextStyle(
-                                                  color: PdfColors.black,
-                                                  fontSize: 18,
-                                                  fontWeight:
-                                                      pw.FontWeight.bold)),
-                                          pw.Text(date,
-                                              style: pw.TextStyle(
-                                                  color: PdfColors.grey,
-                                                  fontSize: 18,
-                                                  fontWeight:
-                                                      pw.FontWeight.bold)),
-                                        ])
-                                      ]),
-                                      pw.SizedBox(height: 40),
-                                      pw.Row(children: [
-                                        pw.SizedBox(width: 20),
-                                        pw.Column(
-                                            crossAxisAlignment:
-                                                pw.CrossAxisAlignment.start,
-                                            children: [
-                                              pw.Text('Spant',
-                                                  style: pw.TextStyle(
-                                                      color: PdfColors.black,
-                                                      fontSize: 36,
-                                                      fontWeight:
-                                                          pw.FontWeight.bold,
-                                                      letterSpacing: 2)),
-                                              pw.Text('Report',
-                                                  style: pw.TextStyle(
-                                                      color: PdfColors.black,
-                                                      fontSize: 60,
-                                                      fontWeight:
-                                                          pw.FontWeight.normal,
-                                                      letterSpacing: 2)),
-                                            ]),
-                                        pw.SizedBox(width: 140),
-                                        pw.Image(
-                                          logoImage,
-                                          height: 100,
+                                      pw.Container(
+                                        color: PdfColors.black,
+                                        width: 100,
+                                        height: 50,
+                                        child: pw.Column(),
+                                      ),
+                                      pw.Text(
+                                        "Spandview",
+                                        style: pw.TextStyle(
+                                          color: PdfColors.black,
+                                          fontSize: 19,
+                                          fontWeight: pw.FontWeight.bold,
                                         ),
-                                      ]),
-                                      pw.SizedBox(height: 30),
-                                      pw.Row(children: [
-                                        pw.SizedBox(width: 30),
-                                        pw.Container(
-                                          child: pw.ClipOval(
-                                            child: pw.Image(image,
-                                                height: 300, width: 160),
-                                          ),
-                                        ),
-                                        pw.SizedBox(width: 20),
-                                        pw.Column(
-                                            crossAxisAlignment:
-                                                pw.CrossAxisAlignment.start,
-                                            children: [
-                                              pw.Text(user.username ?? '',
-                                                  style: pw.TextStyle(
-                                                      color: PdfColors.black,
-                                                      fontSize: 36,
-                                                      fontWeight:
-                                                          pw.FontWeight.bold)),
-                                              pw.SizedBox(height: 15),
-                                              pw.Text('tushalgopani3@gmail.com',
-                                                  style: pw.TextStyle(
-                                                      color: PdfColors.grey,
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          pw.FontWeight.bold)),
-                                              pw.SizedBox(height: 10),
-                                              pw.Row(children: [
-                                                pw.Text('Current Balance : ',
-                                                    style: pw.TextStyle(
-                                                        color: PdfColors.black,
-                                                        fontSize: 18,
-                                                        fontWeight: pw
-                                                            .FontWeight.bold)),
-                                                pw.Text(
-                                                    '${(user.total ?? 25000) - expense + income}',
-                                                    style: pw.TextStyle(
-                                                        color: PdfColors.grey,
-                                                        fontSize: 20,
-                                                        fontWeight: pw
-                                                            .FontWeight.bold)),
-                                              ]),
-                                            ])
-                                      ]),
-                                      pw.SizedBox(height: 70),
-                                      pw.Row(children: [
-                                        pw.SizedBox(width: 20),
-                                        pw.Column(children: [
-                                          pw.Container(
-                                              height: 2,
-                                              width: 440,
-                                              color: PdfColors.black),
-                                          pw.Row(
-                                              mainAxisAlignment: pw
-                                                  .MainAxisAlignment
-                                                  .spaceBetween,
+                                      ),
+                                      pw.Container(
+                                        color: PdfColors.black,
+                                        width: 100,
+                                        height: 713,
+                                        child: pw.Column(),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.Container(
+                                    child: pw.Column(
+                                      crossAxisAlignment:
+                                          pw.CrossAxisAlignment.start,
+                                      children: [
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 20),
+                                            pw.Row(
                                               children: [
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                                pw.Column(children: [
-                                                  pw.Text('NO',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('1',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('2',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('3',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                ]),
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                                pw.SizedBox(width: 50),
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                                pw.Column(children: [
-                                                  pw.Text('Type',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('Income',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.green,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('Expanace',
-                                                      style: pw.TextStyle(
-                                                          color: PdfColors.red,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('Savings',
-                                                      style: pw.TextStyle(
-                                                          color: PdfColors.blue,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                ]),
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                                pw.SizedBox(width: 50),
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                                pw.Column(children: [
-                                                  pw.Text('Amount',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('$income',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.green,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('$expense',
-                                                      style: pw.TextStyle(
-                                                          color: PdfColors.red,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('$savings',
-                                                      style: pw.TextStyle(
-                                                          color: PdfColors.blue,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                ]),
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                              ]),
-                                          pw.Container(
-                                              height: 2,
-                                              width: 440,
-                                              color: PdfColors.black),
-                                          pw.SizedBox(
-                                            height: 10,
-                                          ),
-                                          pw.Row(children: [
-                                            pw.SizedBox(
-                                              width: 120,
-                                            ),
-                                            pw.Text('Total Amount :',
-                                                style: const pw.TextStyle(
-                                                  color: PdfColors.black,
-                                                  fontSize: 18,
-                                                  letterSpacing: 2,
-                                                )),
-                                            pw.SizedBox(width: 35),
-                                            pw.Text(
-                                                '${income - expense + savings}',
-                                                style: pw.TextStyle(
+                                                pw.Text(
+                                                  'Time : ',
+                                                  style: pw.TextStyle(
                                                     color: PdfColors.black,
                                                     fontSize: 18,
                                                     fontWeight:
                                                         pw.FontWeight.bold,
-                                                    letterSpacing: 1)),
-                                          ]),
-                                          pw.SizedBox(
-                                            height: 10,
-                                          ),
-                                          pw.Container(
-                                              height: 2,
-                                              width: 440,
-                                              color: PdfColors.black),
-                                        ]),
-                                      ]),
-                                      pw.SizedBox(
-                                        height: 55,
-                                      ),
-                                      pw.Row(children: [
-                                        pw.SizedBox(
-                                          width: 20,
-                                        ),
-                                        pw.Container(
-                                          child: pw.ConstrainedBox(
-                                            constraints:
-                                                const pw.BoxConstraints(
-                                              maxWidth: 450,
+                                                  ),
+                                                ),
+                                                pw.Text(
+                                                  time,
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.grey,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                            child: pw.Text(
-                                              "          ${user.username} balances income and spending, emphasizing savings for goals. Regular budget reviews ensure financial resilience.",
+                                            pw.SizedBox(width: 60),
+                                            pw.Text(
+                                              'Spandview',
                                               style: pw.TextStyle(
                                                 color: PdfColors.black,
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    pw.FontWeight.normal,
-                                                letterSpacing: 2,
+                                                fontWeight: pw.FontWeight.bold,
                                               ),
                                             ),
-                                          ),
-                                        )
-                                      ]),
-                                      pw.SizedBox(
-                                        height: 30,
-                                      ),
-                                      pw.Row(children: [
-                                        pw.SizedBox(
-                                          width: 110,
-                                        ),
-                                        pw.Text(' Spend Smart, View Success!',
-                                            style: pw.TextStyle(
-                                              color: PdfColors.black,
-                                              fontSize: 18,
-                                              fontWeight: pw.FontWeight.bold,
-                                            )),
-                                      ])
-                                    ]),
-                              ),
-                            ]),
-                          ]),
-                        ];
-                      }),
-                );
-                await Printing.layoutPdf(
-                  onLayout: (format) => pdf.save(),
-                );
-                final output = await getTemporaryDirectory();
-                final file = File("${output.path}/Spandview-Report.pdf");
-                await file.writeAsBytes(await pdf.save());
-              },
-              onTilePressed: () async {
-                UserController user =
-                    Provider.of<UserController>(context, listen: false);
-                String date =
-                    '${DateFormat('dd/MM/yyyy').format(DateTime.now())}';
-
-                String time =
-                    '${TimeOfDay.now().hour % 12}:${TimeOfDay.now().minute}';
-                final logoImage = pw.MemoryImage(
-                  (await rootBundle.load("assets/images/ic_launcher.png"))
-                      .buffer
-                      .asUint8List(),
-                );
-                final image = pw.MemoryImage(
-                  (user.image ?? Uint8List(0)),
-                );
-
-                pdf.addPage(
-                  pw.MultiPage(
-                      margin: const pw.EdgeInsets.all(10),
-                      pageFormat: PdfPageFormat.a4,
-                      build: (pw.Context context) {
-                        return <pw.Widget>[
-                          pw.Column(children: [
-                            pw.Row(children: [
-                              pw.Column(
-                                  mainAxisAlignment:
-                                      pw.MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    pw.Container(
-                                      color: PdfColors.black,
-                                      width: 100,
-                                      height: 50,
-                                      child: pw.Column(),
-                                    ),
-                                    pw.Text("Spandview",
-                                        style: pw.TextStyle(
-                                            color: PdfColors.black,
-                                            fontSize: 19,
-                                            fontWeight: pw.FontWeight.bold)),
-                                    pw.Container(
-                                      color: PdfColors.black,
-                                      width: 100,
-                                      height: 713,
-                                      child: pw.Column(),
-                                    ),
-                                  ]),
-                              pw.Container(
-                                child: pw.Column(
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.start,
-                                    children: [
-                                      pw.Row(children: [
-                                        pw.SizedBox(width: 20),
-                                        pw.Row(children: [
-                                          pw.Text('Time : ',
-                                              style: pw.TextStyle(
-                                                  color: PdfColors.black,
-                                                  fontSize: 18,
-                                                  fontWeight:
-                                                      pw.FontWeight.bold)),
-                                          pw.Text(time,
-                                              style: pw.TextStyle(
-                                                  color: PdfColors.grey,
-                                                  fontSize: 18,
-                                                  fontWeight:
-                                                      pw.FontWeight.bold)),
-                                        ]),
-                                        pw.SizedBox(width: 60),
-                                        pw.Text('Spandview',
-                                            style: pw.TextStyle(
-                                                color: PdfColors.black,
-                                                fontSize: 18,
-                                                fontWeight:
-                                                    pw.FontWeight.bold)),
-                                        pw.SizedBox(width: 50),
-                                        pw.Row(children: [
-                                          pw.Text('Date : ',
-                                              style: pw.TextStyle(
-                                                  color: PdfColors.black,
-                                                  fontSize: 18,
-                                                  fontWeight:
-                                                      pw.FontWeight.bold)),
-                                          pw.Text(date,
-                                              style: pw.TextStyle(
-                                                  color: PdfColors.grey,
-                                                  fontSize: 18,
-                                                  fontWeight:
-                                                      pw.FontWeight.bold)),
-                                        ])
-                                      ]),
-                                      pw.SizedBox(height: 40),
-                                      pw.Row(children: [
-                                        pw.SizedBox(width: 20),
-                                        pw.Column(
-                                            crossAxisAlignment:
-                                                pw.CrossAxisAlignment.start,
-                                            children: [
-                                              pw.Text('Spant',
-                                                  style: pw.TextStyle(
-                                                      color: PdfColors.black,
-                                                      fontSize: 36,
-                                                      fontWeight:
-                                                          pw.FontWeight.bold,
-                                                      letterSpacing: 2)),
-                                              pw.Text('Report',
-                                                  style: pw.TextStyle(
-                                                      color: PdfColors.black,
-                                                      fontSize: 60,
-                                                      fontWeight:
-                                                          pw.FontWeight.normal,
-                                                      letterSpacing: 2)),
-                                            ]),
-                                        pw.SizedBox(width: 140),
-                                        pw.Image(
-                                          logoImage,
-                                          height: 100,
-                                        ),
-                                      ]),
-                                      pw.SizedBox(height: 30),
-                                      pw.Row(children: [
-                                        pw.SizedBox(width: 30),
-                                        pw.Container(
-                                          child: pw.ClipOval(
-                                            child: pw.Image(image,
-                                                height: 300, width: 160),
-                                          ),
-                                        ),
-                                        pw.SizedBox(width: 20),
-                                        pw.Column(
-                                            crossAxisAlignment:
-                                                pw.CrossAxisAlignment.start,
-                                            children: [
-                                              pw.Text(user.username ?? '',
-                                                  style: pw.TextStyle(
-                                                      color: PdfColors.black,
-                                                      fontSize: 36,
-                                                      fontWeight:
-                                                          pw.FontWeight.bold)),
-                                              pw.SizedBox(height: 15),
-                                              pw.Text('tushalgopani3@gmail.com',
-                                                  style: pw.TextStyle(
-                                                      color: PdfColors.grey,
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          pw.FontWeight.bold)),
-                                              pw.SizedBox(height: 10),
-                                              pw.Row(children: [
-                                                pw.Text('Current Balance : ',
-                                                    style: pw.TextStyle(
-                                                        color: PdfColors.black,
-                                                        fontSize: 18,
-                                                        fontWeight: pw
-                                                            .FontWeight.bold)),
-                                                pw.Text(
-                                                    '${(user.total ?? 25000) - expense + income}',
-                                                    style: pw.TextStyle(
-                                                        color: PdfColors.grey,
-                                                        fontSize: 20,
-                                                        fontWeight: pw
-                                                            .FontWeight.bold)),
-                                              ]),
-                                            ])
-                                      ]),
-                                      pw.SizedBox(height: 70),
-                                      pw.Row(children: [
-                                        pw.SizedBox(width: 20),
-                                        pw.Column(children: [
-                                          pw.Container(
-                                              height: 2,
-                                              width: 440,
-                                              color: PdfColors.black),
-                                          pw.Row(
-                                              mainAxisAlignment: pw
-                                                  .MainAxisAlignment
-                                                  .spaceBetween,
+                                            pw.SizedBox(width: 50),
+                                            pw.Row(
                                               children: [
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                                pw.Column(children: [
-                                                  pw.Text('NO',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('1',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('2',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('3',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                ]),
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                                pw.SizedBox(width: 50),
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                                pw.Column(children: [
-                                                  pw.Text('Type',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('Income',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.green,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('Expanace',
-                                                      style: pw.TextStyle(
-                                                          color: PdfColors.red,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('Savings',
-                                                      style: pw.TextStyle(
-                                                          color: PdfColors.blue,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                ]),
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                                pw.SizedBox(width: 50),
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                                pw.Column(children: [
-                                                  pw.Text('Amount',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.black,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('$income',
-                                                      style: pw.TextStyle(
-                                                          color:
-                                                              PdfColors.green,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('$expense',
-                                                      style: pw.TextStyle(
-                                                          color: PdfColors.red,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                  pw.Container(
-                                                      height: 1,
-                                                      width: 110,
-                                                      color: PdfColors.black),
-                                                  pw.SizedBox(height: 05),
-                                                  pw.Text('$savings',
-                                                      style: pw.TextStyle(
-                                                          color: PdfColors.blue,
-                                                          fontSize: 18,
-                                                          fontWeight: pw
-                                                              .FontWeight
-                                                              .bold)),
-                                                ]),
-                                                pw.Container(
-                                                    height: 120,
-                                                    width: 2,
-                                                    color: PdfColors.black),
-                                              ]),
-                                          pw.Container(
-                                              height: 2,
-                                              width: 440,
-                                              color: PdfColors.black),
-                                          pw.SizedBox(
-                                            height: 10,
-                                          ),
-                                          pw.Row(children: [
-                                            pw.SizedBox(
-                                              width: 120,
-                                            ),
-                                            pw.Text('Total Amount :',
-                                                style: const pw.TextStyle(
-                                                  color: PdfColors.black,
-                                                  fontSize: 18,
-                                                  letterSpacing: 2,
-                                                )),
-                                            pw.SizedBox(width: 35),
-                                            pw.Text(
-                                                '${income - expense + savings}',
-                                                style: pw.TextStyle(
+                                                pw.Text(
+                                                  'Date : ',
+                                                  style: pw.TextStyle(
                                                     color: PdfColors.black,
                                                     fontSize: 18,
                                                     fontWeight:
                                                         pw.FontWeight.bold,
-                                                    letterSpacing: 1)),
-                                          ]),
-                                          pw.SizedBox(
-                                            height: 10,
-                                          ),
-                                          pw.Container(
-                                              height: 2,
-                                              width: 440,
-                                              color: PdfColors.black),
-                                        ]),
-                                      ]),
-                                      pw.SizedBox(
-                                        height: 55,
-                                      ),
-                                      pw.Row(children: [
-                                        pw.SizedBox(
-                                          width: 20,
-                                        ),
-                                        pw.Container(
-                                          child: pw.ConstrainedBox(
-                                            constraints:
-                                                const pw.BoxConstraints(
-                                              maxWidth: 450,
+                                                  ),
+                                                ),
+                                                pw.Text(
+                                                  date,
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.grey,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                            child: pw.Text(
-                                              "          ${user.username} balances income and spending, emphasizing savings for goals. Regular budget reviews ensure financial resilience.",
+                                          ],
+                                        ),
+                                        pw.SizedBox(height: 40),
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 20),
+                                            pw.Column(
+                                              crossAxisAlignment:
+                                                  pw.CrossAxisAlignment.start,
+                                              children: [
+                                                pw.Text(
+                                                  'Spant',
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.black,
+                                                    fontSize: 36,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                    letterSpacing: 2,
+                                                  ),
+                                                ),
+                                                pw.Text(
+                                                  'Report',
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.black,
+                                                    fontSize: 60,
+                                                    fontWeight:
+                                                        pw.FontWeight.normal,
+                                                    letterSpacing: 2,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            pw.SizedBox(width: 140),
+                                            pw.Image(logoImage, height: 100),
+                                          ],
+                                        ),
+                                        pw.SizedBox(height: 30),
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 30),
+                                            pw.Container(
+                                              child: pw.ClipOval(
+                                                child: pw.Image(
+                                                  image,
+                                                  height: 300,
+                                                  width: 160,
+                                                ),
+                                              ),
+                                            ),
+                                            pw.SizedBox(width: 20),
+                                            pw.Column(
+                                              crossAxisAlignment:
+                                                  pw.CrossAxisAlignment.start,
+                                              children: [
+                                                pw.Text(
+                                                  user.username ?? '',
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.black,
+                                                    fontSize: 36,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                  ),
+                                                ),
+                                                pw.SizedBox(height: 15),
+                                                pw.Text(
+                                                  'tushalgopani3@gmail.com',
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.grey,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        pw.FontWeight.bold,
+                                                  ),
+                                                ),
+                                                pw.SizedBox(height: 10),
+                                                pw.Row(
+                                                  children: [
+                                                    pw.Text(
+                                                      'Current Balance : ',
+                                                      style: pw.TextStyle(
+                                                        color: PdfColors.black,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            pw.FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    pw.Text(
+                                                      '${(user.total ?? 25000) - expense + income}',
+                                                      style: pw.TextStyle(
+                                                        color: PdfColors.grey,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            pw.FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        pw.SizedBox(height: 70),
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 20),
+                                            pw.Column(
+                                              children: [
+                                                pw.Container(
+                                                  height: 2,
+                                                  width: 440,
+                                                  color: PdfColors.black,
+                                                ),
+                                                pw.Row(
+                                                  mainAxisAlignment:
+                                                      pw
+                                                          .MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                    pw.Column(
+                                                      children: [
+                                                        pw.Text(
+                                                          'NO',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '1',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '2',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '3',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                    pw.SizedBox(width: 50),
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                    pw.Column(
+                                                      children: [
+                                                        pw.Text(
+                                                          'Type',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          'Income',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.green,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          'Expanace',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.red,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          'Savings',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.blue,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                    pw.SizedBox(width: 50),
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                    pw.Column(
+                                                      children: [
+                                                        pw.Text(
+                                                          'Amount',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.black,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '$income',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.green,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '$expense',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.red,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                        pw.Container(
+                                                          height: 1,
+                                                          width: 110,
+                                                          color:
+                                                              PdfColors.black,
+                                                        ),
+                                                        pw.SizedBox(height: 05),
+                                                        pw.Text(
+                                                          '$savings',
+                                                          style: pw.TextStyle(
+                                                            color:
+                                                                PdfColors.blue,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                pw
+                                                                    .FontWeight
+                                                                    .bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    pw.Container(
+                                                      height: 120,
+                                                      width: 2,
+                                                      color: PdfColors.black,
+                                                    ),
+                                                  ],
+                                                ),
+                                                pw.Container(
+                                                  height: 2,
+                                                  width: 440,
+                                                  color: PdfColors.black,
+                                                ),
+                                                pw.SizedBox(height: 10),
+                                                pw.Row(
+                                                  children: [
+                                                    pw.SizedBox(width: 120),
+                                                    pw.Text(
+                                                      'Total Amount :',
+                                                      style: const pw.TextStyle(
+                                                        color: PdfColors.black,
+                                                        fontSize: 18,
+                                                        letterSpacing: 2,
+                                                      ),
+                                                    ),
+                                                    pw.SizedBox(width: 35),
+                                                    pw.Text(
+                                                      '${income - expense + savings}',
+                                                      style: pw.TextStyle(
+                                                        color: PdfColors.black,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            pw.FontWeight.bold,
+                                                        letterSpacing: 1,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                pw.SizedBox(height: 10),
+                                                pw.Container(
+                                                  height: 2,
+                                                  width: 440,
+                                                  color: PdfColors.black,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        pw.SizedBox(height: 55),
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 20),
+                                            pw.Container(
+                                              child: pw.ConstrainedBox(
+                                                constraints:
+                                                    const pw.BoxConstraints(
+                                                      maxWidth: 450,
+                                                    ),
+                                                child: pw.Text(
+                                                  "          ${user.username} balances income and spending, emphasizing savings for goals. Regular budget reviews ensure financial resilience.",
+                                                  style: pw.TextStyle(
+                                                    color: PdfColors.black,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        pw.FontWeight.normal,
+                                                    letterSpacing: 2,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        pw.SizedBox(height: 30),
+                                        pw.Row(
+                                          children: [
+                                            pw.SizedBox(width: 110),
+                                            pw.Text(
+                                              ' Spend Smart, View Success!',
                                               style: pw.TextStyle(
                                                 color: PdfColors.black,
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    pw.FontWeight.normal,
-                                                letterSpacing: 2,
+                                                fontWeight: pw.FontWeight.bold,
                                               ),
                                             ),
-                                          ),
-                                        )
-                                      ]),
-                                      pw.SizedBox(
-                                        height: 30,
-                                      ),
-                                      pw.Row(children: [
-                                        pw.SizedBox(
-                                          width: 110,
+                                          ],
                                         ),
-                                        pw.Text(' Spend Smart, View Success!',
-                                            style: pw.TextStyle(
-                                              color: PdfColors.black,
-                                              fontSize: 18,
-                                              fontWeight: pw.FontWeight.bold,
-                                            )),
-                                      ])
-                                    ]),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ]),
-                          ]),
+                            ],
+                          ),
                         ];
-                      }),
-                );
-                await Printing.layoutPdf(
-                  onLayout: (format) => pdf.save(),
-                );
-                final output = await getTemporaryDirectory();
-                final file = File("${output.path}/Spandview-Report.pdf");
-                await file.writeAsBytes(await pdf.save());
-              },
+                      },
+                    ),
+                  );
+                  await Printing.layoutPdf(onLayout: (format) => pdf.save());
+                  final output = await getTemporaryDirectory();
+                  final file = File("${output.path}/Spandview-Report.pdf");
+                  await file.writeAsBytes(await pdf.save());
+                },
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 60,
-          ),
-          Container(
-            width: 270,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
+            const SizedBox(height: 60),
+            Container(
+              width: 270,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GestureDetector(
                     onTap: () {},
                     child: const Text(
                       'Privacy Policy',
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    )),
-                const SizedBox(
-                  height: 10,
-                ),
-                GestureDetector(
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  GestureDetector(
                     onTap: () {
                       AwesomeDialog(
                         context: context,
@@ -1453,44 +1763,58 @@ class RecentPage extends StatelessWidget {
                         headerAnimationLoop: false,
                         animType: AnimType.scale,
                         title: 'Warning',
-                        desc:
-                        'Are you sure you want to log out ?',
+                        desc: 'Are you sure you want to log out ?',
                         btnCancelOnPress: () async {
-                          print(Provider.of<UserController>(context, listen: false).username);
+                          print(
+                            Provider.of<UserController>(
+                              context,
+                              listen: false,
+                            ).username,
+                          );
                         },
                         btnOkOnPress: () async {
-                          Provider.of<UserController>(context, listen: false).logoutUser();
-                          await Provider.of<LogInController>(context,listen: false).islogout();
+                          Provider.of<UserController>(
+                            context,
+                            listen: false,
+                          ).logoutUser();
+                          await Provider.of<LogInController>(
+                            context,
+                            listen: false,
+                          ).islogout();
                           await DbHelper.dbHelper.initDB();
                           Navigator.of(context).pushReplacement(
-                              PageTransition(
-                                type: PageTransitionType.size,
-                                duration: const Duration(seconds: 1),
-                                alignment: Alignment.bottomCenter,
-                                child: LogInPage(),
-                              ));
+                            PageTransition(
+                              type: PageTransitionType.size,
+                              duration: const Duration(seconds: 1),
+                              alignment: Alignment.bottomCenter,
+                              child: LogInPage(),
+                            ),
+                          );
                         },
-                      ).show()
-                      ;
+                      ).show();
                     },
                     child: Text(
                       'Log out'.toUpperCase(),
                       style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    )),
-                Text(
-                  "Spandview v1.0.0",
-                  style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    "Spandview v1.0.0",
+                    style: TextStyle(
                       color: Colors.grey.shade600,
                       fontSize: 12,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }

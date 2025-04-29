@@ -52,27 +52,19 @@ dependencies:
   fluentui_system_icons: any
   loading_btn: any
   animated_text_kit: any
-  flutter_heatmap_calendar:
-  syncfusion_flutter_charts:
-  pdf:
-  printing:
+  flutter_heatmap_calendar: any
+  syncfusion_flutter_charts: any
+  pdf: any
+  printing: any
   path_provider: any
-  introduction_screen:
-  flutter_slidable:
-  awesome_dialog:
-  flutter_launcher_icons: any
+  introduction_screen: any
+  flutter_slidable: any
+  awesome_dialog: any
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-
-flutter_launcher_icons:
-  android: true
-  ios: true
-  remove_alpha_ios: true
-  image_path: "assets/images/AppIcon.jpeg"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

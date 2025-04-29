@@ -83,7 +83,7 @@ class IntroScreen3 extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: size.height * 0.38,
+                height: size.height * 0.40,
                 width: size.width * 0.98,
                 decoration: BoxDecoration(
                   color: primary,
@@ -112,7 +112,7 @@ class IntroScreen3 extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 30.0,
+                        top: 26,
                         left: 10,
                         right: 10,
                       ),
@@ -138,7 +138,7 @@ class IntroScreen3 extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 18.0,
-                        vertical: 50,
+                        vertical: 40,
                       ),
                       child: FadeAnimation(
                         8,

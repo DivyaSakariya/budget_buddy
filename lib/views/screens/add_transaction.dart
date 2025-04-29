@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:budget_buddy/utility/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -163,91 +164,87 @@ class AddTransactionPage extends StatelessWidget {
                     color: const Color(0xE7EBEBF1),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Consumer<TransactionController>(
-                            builder: ((context, pro, child) {
-                              return DropdownButton(
-                                value: pro.selectedcategory,
-                                items:
-                                    Provider.of<CategoryController>(context)
-                                        .categoryList
-                                        .map(
-                                          (e) => DropdownMenuItem(
-                                            value: e.title,
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                        right: 3,
-                                                      ),
-                                                  child: Container(
-                                                    margin:
-                                                        const EdgeInsets.all(2),
-                                                    padding:
-                                                        const EdgeInsets.all(5),
-                                                    width: size.width * 0.11,
-                                                    height: size.height * 0.3,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors
-                                                          .primaries[Provider.of<
-                                                                    CategoryController
-                                                                  >(context)
-                                                                  .categoryList
-                                                                  .indexOf(e) %
-                                                              Colors
-                                                                  .primaries
-                                                                  .length]
-                                                          .withOpacity(0.75),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                            8,
-                                                          ),
-                                                    ),
-                                                    child: Image.asset(
-                                                      e.image!,
-                                                    ),
+                      Consumer<TransactionController>(
+                        builder: ((context, pro, child) {
+                          return DropdownButton(
+                            value: pro.selectedcategory,
+                            items:
+                                Provider.of<CategoryController>(context)
+                                    .categoryList
+                                    .map(
+                                      (e) => DropdownMenuItem(
+                                        value: e.title,
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(
+                                                    right: 3,
                                                   ),
+                                              child: Container(
+                                                margin:
+                                                    const EdgeInsets.all(2),
+                                                padding:
+                                                    const EdgeInsets.all(5),
+                                                width: size.width * 0.11,
+                                                height: size.height * 0.3,
+                                                decoration: BoxDecoration(
+                                                  color: Colors
+                                                      .primaries[Provider.of<
+                                                                CategoryController
+                                                              >(context)
+                                                              .categoryList
+                                                              .indexOf(e) %
+                                                          Colors
+                                                              .primaries
+                                                              .length]
+                                                      .withOpacity(0.75),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                        8,
+                                                      ),
                                                 ),
-                                                Text(e.title!),
-                                                SizedBox(
-                                                  width: size.width * 0.25,
+                                                child: Image.asset(
+                                                  e.image!,
                                                 ),
-                                              ],
+                                              ),
                                             ),
-                                          ),
-                                        )
-                                        .toList(),
-                                borderRadius: BorderRadius.circular(12),
-                                dropdownColor: const Color(0xE7EBEBF1),
-                                iconEnabledColor: Colors.grey,
-                                iconSize: 28,
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 18,
-                                  color: Colors.black.withOpacity(0.6),
-                                ),
-                                padding: const EdgeInsets.all(12),
-                                icon: const Icon(
-                                  Icons.arrow_drop_down_circle_rounded,
-                                  color: Colors.white,
-                                ),
-                                menuMaxHeight: 250,
-                                underline: Container(),
-                                onChanged: (val) {
-                                  l.i("${val}");
-                                  pro.getSelected(category: val ?? 'Food');
-                                  tran.category = val;
-                                },
-                              );
-                            }),
-                          ),
-                        ],
+                                            Text(e.title!),
+                                            SizedBox(
+                                              width: size.width * 0.25,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                            borderRadius: BorderRadius.circular(12),
+                            dropdownColor: const Color(0xE7EBEBF1),
+                            iconEnabledColor: Colors.grey,
+                            iconSize: 28,
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                              color: Colors.black.withOpacity(0.6),
+                            ),
+                            padding: const EdgeInsets.all(12),
+                            icon: const Icon(
+                              Icons.arrow_drop_down_circle_rounded,
+                              color: grey300,
+                            ),
+                            menuMaxHeight: 250,
+                            underline: Container(),
+                            onChanged: (val) {
+                              l.i("${val}");
+                              pro.getSelected(category: val ?? 'Food');
+                              tran.category = val;
+                            },
+                          );
+                        }),
                       ),
                     ],
                   ),
@@ -275,7 +272,7 @@ class AddTransactionPage extends StatelessWidget {
                               border: Border.all(
                                 color:
                                     (pro.selecttype == 'INCOME')
-                                        ? Colors.blue
+                                        ? secondary
                                         : Colors.grey,
                                 width: 1,
                               ),
@@ -288,7 +285,7 @@ class AddTransactionPage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Radio(
-                                    activeColor: Colors.blue,
+                                    activeColor: secondary,
                                     value: 'INCOME',
                                     groupValue: pro.selecttype,
                                     onChanged: (val) {
@@ -314,7 +311,7 @@ class AddTransactionPage extends StatelessWidget {
                               border: Border.all(
                                 color:
                                     (pro.selecttype == 'EXPENSE')
-                                        ? Colors.blue
+                                        ? secondary
                                         : Colors.grey,
                                 width: 1,
                               ),
@@ -327,7 +324,7 @@ class AddTransactionPage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Radio(
-                                    activeColor: Colors.blue,
+                                    activeColor: secondary,
                                     value: 'EXPENSE',
                                     groupValue: pro.selecttype,
                                     onChanged: (val) {
@@ -367,7 +364,7 @@ class AddTransactionPage extends StatelessWidget {
                     Container(
                       width: size.width * 0.32,
                       decoration: BoxDecoration(
-                        color: const Color(0xE7E0DFEC),
+                        color: third,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Padding(
@@ -380,7 +377,7 @@ class AddTransactionPage extends StatelessWidget {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Text("${pro.time}"),
+                                Text(pro.time),
                                 IconButton(
                                   onPressed: () async {
                                     pro.showMyTime(context);
@@ -402,7 +399,7 @@ class AddTransactionPage extends StatelessWidget {
                     Container(
                       width: size.width * 0.4,
                       decoration: BoxDecoration(
-                        color: const Color(0xE7E0DFEC),
+                        color: third,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Padding(
@@ -475,16 +472,16 @@ class AddTransactionPage extends StatelessWidget {
                         width: double.infinity,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFbaeaf9),
+                          color: secondary,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
                           'Add',
                           style: GoogleFonts.poppins(
                             letterSpacing: 2,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black87,
-                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 17,
                           ),
                         ),
                       ),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class SavGoalTile extends StatelessWidget {
+class SaveGoalTile extends StatelessWidget {
   final String? savingName;
-  final String? savingdate;
+  final String? savingDate;
   final double? amount;
 
 
-  SavGoalTile({
+  SaveGoalTile({
     required this.savingName,
-    required this.savingdate,
+    required this.savingDate,
     required this.amount,
   });
 
@@ -37,7 +37,7 @@ class SavGoalTile extends StatelessWidget {
             padding: const EdgeInsets.only(left: 9, right: 20),
             child: Container(
               height: size.height * 0.06,child: Image.asset(
-                'assets/images/AppIcon.png',fit: BoxFit.fitWidth,
+                'assets/images/AppIcon.jpeg',fit: BoxFit.fitWidth,
               ),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -65,7 +65,7 @@ class SavGoalTile extends StatelessWidget {
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,),
                 ),
                 Text(
-                 savingdate ?? '',
+                 savingDate ?? '',
                   style: TextStyle(fontSize: 11,fontWeight: FontWeight.w400,color: Colors.grey.shade600),
                 ),
               ],

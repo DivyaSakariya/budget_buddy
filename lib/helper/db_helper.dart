@@ -7,7 +7,7 @@ import 'package:sqflite/sqflite.dart';
 
 import '../modal/category_modal.dart';
 import '../modal/saving_goal_modal.dart';
-import '../modal/saving_moddal.dart';
+import '../modal/saving_modal.dart';
 import '../modal/transaction_modal.dart';
 import '../modal/user_modal.dart';
 
