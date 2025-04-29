@@ -3,8 +3,11 @@ import 'dart:math';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
@@ -145,6 +148,7 @@ class RecentPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        SizedBox(width: size.width * 0.04),
                         Column(
                           children: [
                             Column(
@@ -218,7 +222,7 @@ class RecentPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(width: size.width * 0.04),
+                        SizedBox(width: size.width * 0.06),
                         SizedBox(
                           height: 150,
                           width: 150,
@@ -600,7 +604,7 @@ class RecentPage extends StatelessWidget {
                                         child: pw.Column(),
                                       ),
                                       pw.Text(
-                                        "Spandview",
+                                        "BudgetBuddy",
                                         style: pw.TextStyle(
                                           color: PdfColors.black,
                                           fontSize: 19,
@@ -621,8 +625,10 @@ class RecentPage extends StatelessWidget {
                                           pw.CrossAxisAlignment.start,
                                       children: [
                                         pw.Row(
+                                          mainAxisAlignment:
+                                              pw.MainAxisAlignment.spaceEvenly,
                                           children: [
-                                            pw.SizedBox(width: 20),
+                                            pw.SizedBox(width: 25),
                                             pw.Row(
                                               children: [
                                                 pw.Text(
@@ -645,16 +651,16 @@ class RecentPage extends StatelessWidget {
                                                 ),
                                               ],
                                             ),
-                                            pw.SizedBox(width: 60),
+                                            pw.SizedBox(width: 25),
                                             pw.Text(
-                                              'Spandview',
+                                              'BudgetBuddy',
                                               style: pw.TextStyle(
                                                 color: PdfColors.black,
                                                 fontSize: 18,
                                                 fontWeight: pw.FontWeight.bold,
                                               ),
                                             ),
-                                            pw.SizedBox(width: 50),
+                                            pw.SizedBox(width: 25),
                                             pw.Row(
                                               children: [
                                                 pw.Text(
@@ -688,7 +694,7 @@ class RecentPage extends StatelessWidget {
                                                   pw.CrossAxisAlignment.start,
                                               children: [
                                                 pw.Text(
-                                                  'Spant',
+                                                  'Expense',
                                                   style: pw.TextStyle(
                                                     color: PdfColors.black,
                                                     fontSize: 36,
@@ -713,10 +719,11 @@ class RecentPage extends StatelessWidget {
                                             pw.Image(logoImage, height: 100),
                                           ],
                                         ),
+
                                         pw.SizedBox(height: 30),
                                         pw.Row(
                                           children: [
-                                            pw.SizedBox(width: 30),
+                                            pw.SizedBox(width: 28),
                                             pw.Container(
                                               child: pw.ClipOval(
                                                 child: pw.Image(
@@ -742,7 +749,7 @@ class RecentPage extends StatelessWidget {
                                                 ),
                                                 pw.SizedBox(height: 15),
                                                 pw.Text(
-                                                  'tushalgopani3@gmail.com',
+                                                  'diyasakariya1227@gmail.com',
                                                   style: pw.TextStyle(
                                                     color: PdfColors.grey,
                                                     fontSize: 18,
@@ -777,7 +784,7 @@ class RecentPage extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        pw.SizedBox(height: 70),
+                                        pw.SizedBox(height: 68),
                                         pw.Row(
                                           children: [
                                             pw.SizedBox(width: 20),
@@ -928,7 +935,7 @@ class RecentPage extends StatelessWidget {
                                                         ),
                                                         pw.SizedBox(height: 05),
                                                         pw.Text(
-                                                          'Expanace',
+                                                          'Expense',
                                                           style: pw.TextStyle(
                                                             color:
                                                                 PdfColors.red,
@@ -1058,10 +1065,12 @@ class RecentPage extends StatelessWidget {
                                                   width: 440,
                                                   color: PdfColors.black,
                                                 ),
+
                                                 pw.SizedBox(height: 10),
                                                 pw.Row(
                                                   children: [
                                                     pw.SizedBox(width: 120),
+
                                                     pw.Text(
                                                       'Total Amount :',
                                                       style: const pw.TextStyle(
@@ -1096,7 +1105,7 @@ class RecentPage extends StatelessWidget {
                                         pw.SizedBox(height: 55),
                                         pw.Row(
                                           children: [
-                                            pw.SizedBox(width: 20),
+                                            pw.SizedBox(width: 18),
                                             pw.Container(
                                               child: pw.ConstrainedBox(
                                                 constraints:
@@ -1104,7 +1113,7 @@ class RecentPage extends StatelessWidget {
                                                       maxWidth: 450,
                                                     ),
                                                 child: pw.Text(
-                                                  "          ${user.username} balances income and spending, emphasizing savings for goals. Regular budget reviews ensure financial resilience.",
+                                                  "          ${user.username} balance income and expensing, emphasizing savings for goals. Regular budget reviews ensure financial resilience.",
                                                   style: pw.TextStyle(
                                                     color: PdfColors.black,
                                                     fontSize: 18,
@@ -1120,9 +1129,9 @@ class RecentPage extends StatelessWidget {
                                         pw.SizedBox(height: 30),
                                         pw.Row(
                                           children: [
-                                            pw.SizedBox(width: 110),
+                                            pw.SizedBox(width: 108),
                                             pw.Text(
-                                              ' Spend Smart, View Success!',
+                                              ' Master your money, master your life',
                                               style: pw.TextStyle(
                                                 color: PdfColors.black,
                                                 fontSize: 18,
@@ -1144,7 +1153,7 @@ class RecentPage extends StatelessWidget {
                   );
                   await Printing.layoutPdf(onLayout: (format) => pdf.save());
                   final output = await getTemporaryDirectory();
-                  final file = File("${output.path}/Spandview-Report.pdf");
+                  final file = File("${output.path}/BudgetBuddy-Report.pdf");
                   await file.writeAsBytes(await pdf.save());
                 },
                 onTilePressed: () async {
@@ -1185,7 +1194,7 @@ class RecentPage extends StatelessWidget {
                                         child: pw.Column(),
                                       ),
                                       pw.Text(
-                                        "Spandview",
+                                        "BudgetBuddy",
                                         style: pw.TextStyle(
                                           color: PdfColors.black,
                                           fontSize: 19,
@@ -1206,8 +1215,10 @@ class RecentPage extends StatelessWidget {
                                           pw.CrossAxisAlignment.start,
                                       children: [
                                         pw.Row(
+                                          mainAxisAlignment:
+                                              pw.MainAxisAlignment.spaceEvenly,
                                           children: [
-                                            pw.SizedBox(width: 20),
+                                            pw.SizedBox(width: 25),
                                             pw.Row(
                                               children: [
                                                 pw.Text(
@@ -1230,16 +1241,16 @@ class RecentPage extends StatelessWidget {
                                                 ),
                                               ],
                                             ),
-                                            pw.SizedBox(width: 60),
+                                            pw.SizedBox(width: 25),
                                             pw.Text(
-                                              'Spandview',
+                                              'BudgetBuddy',
                                               style: pw.TextStyle(
                                                 color: PdfColors.black,
                                                 fontSize: 18,
                                                 fontWeight: pw.FontWeight.bold,
                                               ),
                                             ),
-                                            pw.SizedBox(width: 50),
+                                            pw.SizedBox(width: 25),
                                             pw.Row(
                                               children: [
                                                 pw.Text(
@@ -1273,7 +1284,7 @@ class RecentPage extends StatelessWidget {
                                                   pw.CrossAxisAlignment.start,
                                               children: [
                                                 pw.Text(
-                                                  'Spant',
+                                                  'Expense',
                                                   style: pw.TextStyle(
                                                     color: PdfColors.black,
                                                     fontSize: 36,
@@ -1298,10 +1309,11 @@ class RecentPage extends StatelessWidget {
                                             pw.Image(logoImage, height: 100),
                                           ],
                                         ),
+
                                         pw.SizedBox(height: 30),
                                         pw.Row(
                                           children: [
-                                            pw.SizedBox(width: 30),
+                                            pw.SizedBox(width: 28),
                                             pw.Container(
                                               child: pw.ClipOval(
                                                 child: pw.Image(
@@ -1327,7 +1339,7 @@ class RecentPage extends StatelessWidget {
                                                 ),
                                                 pw.SizedBox(height: 15),
                                                 pw.Text(
-                                                  'tushalgopani3@gmail.com',
+                                                  'diyasakariya1227@gmail.com',
                                                   style: pw.TextStyle(
                                                     color: PdfColors.grey,
                                                     fontSize: 18,
@@ -1362,7 +1374,7 @@ class RecentPage extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        pw.SizedBox(height: 70),
+                                        pw.SizedBox(height: 68),
                                         pw.Row(
                                           children: [
                                             pw.SizedBox(width: 20),
@@ -1513,7 +1525,7 @@ class RecentPage extends StatelessWidget {
                                                         ),
                                                         pw.SizedBox(height: 05),
                                                         pw.Text(
-                                                          'Expanace',
+                                                          'Expense',
                                                           style: pw.TextStyle(
                                                             color:
                                                                 PdfColors.red,
@@ -1643,10 +1655,12 @@ class RecentPage extends StatelessWidget {
                                                   width: 440,
                                                   color: PdfColors.black,
                                                 ),
+
                                                 pw.SizedBox(height: 10),
                                                 pw.Row(
                                                   children: [
                                                     pw.SizedBox(width: 120),
+
                                                     pw.Text(
                                                       'Total Amount :',
                                                       style: const pw.TextStyle(
@@ -1681,7 +1695,7 @@ class RecentPage extends StatelessWidget {
                                         pw.SizedBox(height: 55),
                                         pw.Row(
                                           children: [
-                                            pw.SizedBox(width: 20),
+                                            pw.SizedBox(width: 18),
                                             pw.Container(
                                               child: pw.ConstrainedBox(
                                                 constraints:
@@ -1689,7 +1703,7 @@ class RecentPage extends StatelessWidget {
                                                       maxWidth: 450,
                                                     ),
                                                 child: pw.Text(
-                                                  "          ${user.username} balances income and spending, emphasizing savings for goals. Regular budget reviews ensure financial resilience.",
+                                                  "          ${user.username} balance income and expensing, emphasizing savings for goals. Regular budget reviews ensure financial resilience.",
                                                   style: pw.TextStyle(
                                                     color: PdfColors.black,
                                                     fontSize: 18,
@@ -1705,9 +1719,9 @@ class RecentPage extends StatelessWidget {
                                         pw.SizedBox(height: 30),
                                         pw.Row(
                                           children: [
-                                            pw.SizedBox(width: 110),
+                                            pw.SizedBox(width: 108),
                                             pw.Text(
-                                              ' Spend Smart, View Success!',
+                                              ' Master your money, master your life',
                                               style: pw.TextStyle(
                                                 color: PdfColors.black,
                                                 fontSize: 18,
@@ -1729,7 +1743,7 @@ class RecentPage extends StatelessWidget {
                   );
                   await Printing.layoutPdf(onLayout: (format) => pdf.save());
                   final output = await getTemporaryDirectory();
-                  final file = File("${output.path}/Spandview-Report.pdf");
+                  final file = File("${output.path}/BudgetBuddy-Report.pdf");
                   await file.writeAsBytes(await pdf.save());
                 },
               ),
@@ -1800,7 +1814,7 @@ class RecentPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Spandview v1.0.0",
+                    "BudgetBuddy v1.0.0",
                     style: TextStyle(
                       color: Colors.grey.shade600,
                       fontSize: 12,

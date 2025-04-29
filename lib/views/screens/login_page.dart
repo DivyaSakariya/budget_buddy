@@ -10,7 +10,6 @@ import '../../controller/transaction_controller.dart';
 import '../../controller/user_controller.dart';
 import '../../helper/db_helper.dart';
 import '../../utility/animation/fade_animation_controller.dart';
-import '../../utility/animation/loop_controller.dart';
 import '../../utility/colors.dart';
 import 'home_page.dart';
 import 'signup_page.dart';

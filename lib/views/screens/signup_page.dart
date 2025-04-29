@@ -36,9 +36,9 @@ class SignUpPage extends StatelessWidget {
       backgroundColor: purple100,
       body: Form(
         key: formKey,
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -91,146 +91,134 @@ class SignUpPage extends StatelessWidget {
                       FadeAnimation(
                         2.0,
                         30,
-                        SizedBox(
-                          width: 200,
-                          child: TextFormField(
-                            controller: userController,
-                            autocorrect: true,
-                            textInputAction: TextInputAction.next,
-                            style: TextStyle(color: Colors.white),
-                            decoration: const InputDecoration(
-                              hintText: 'Username',
-                              hintStyle: TextStyle(color: grey300),
-                              helperText: 'Please enter your username',
-                              helperStyle: TextStyle(
-                                fontSize: 12,
-                                color: purple100,
-                              ),
+                        TextFormField(
+                          controller: userController,
+                          autocorrect: true,
+                          textInputAction: TextInputAction.next,
+                          style: TextStyle(color: Colors.white),
+                          decoration: const InputDecoration(
+                            hintText: 'Username',
+                            hintStyle: TextStyle(color: grey300),
+                            helperText: 'Please enter your username',
+                            helperStyle: TextStyle(
+                              fontSize: 12,
+                              color: purple100,
                             ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please enter your first name';
-                              }
-                              return null;
-                            },
-                            onChanged: (val) {
-                              user.username = val;
-                            },
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your first name';
+                            }
+                            return null;
+                          },
+                          onChanged: (val) {
+                            user.username = val;
+                          },
                         ),
                       ),
                       const SizedBox(height: 15),
-                      SizedBox(
-                        width: 240,
-                        child: FadeAnimation(
-                          2.4,
-                          30,
-                          TextFormField(
-                            controller: emailController,
-                            autocorrect: true,
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.emailAddress,
-                            style: TextStyle(color: Colors.white),
-                            decoration: const InputDecoration(
-                              hintText: 'Email',
-                              hintStyle: TextStyle(color: grey300),
-                              helperText: 'Please enter your email',
-                              helperStyle: TextStyle(
-                                fontSize: 12,
-                                color: purple100,
-                              ),
+                      FadeAnimation(
+                        2.4,
+                        30,
+                        TextFormField(
+                          controller: emailController,
+                          autocorrect: true,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(color: Colors.white),
+                          decoration: const InputDecoration(
+                            hintText: 'Email',
+                            hintStyle: TextStyle(color: grey300),
+                            helperText: 'Please enter your email',
+                            helperStyle: TextStyle(
+                              fontSize: 12,
+                              color: purple100,
                             ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please enter your Password';
-                              }
-                              return null;
-                            },
-                            onChanged: (val) {
-                              user.email = val;
-                            },
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your Password';
+                            }
+                            return null;
+                          },
+                          onChanged: (val) {
+                            user.email = val;
+                          },
                         ),
                       ),
                       const SizedBox(height: 15),
                       FadeAnimation(
                         2.6,
                         30,
-                        SizedBox(
-                          width: 275,
-                          child: TextFormField(
-                            controller: balanceController,
-                            autocorrect: true,
-                            keyboardType: TextInputType.number,
-                            textInputAction: TextInputAction.next,
-                            style: TextStyle(color: Colors.white),
-                            decoration: const InputDecoration(
-                              hintText: 'Total Balance',
-                              hintStyle: TextStyle(color: grey300),
-                              helperText:
-                                  'Please enter your estimated total balance.',
-                              helperStyle: TextStyle(
-                                fontSize: 12,
-                                color: purple100,
-                              ),
+                        TextFormField(
+                          controller: balanceController,
+                          autocorrect: true,
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.next,
+                          style: TextStyle(color: Colors.white),
+                          decoration: const InputDecoration(
+                            hintText: 'Total Balance',
+                            hintStyle: TextStyle(color: grey300),
+                            helperText:
+                                'Please enter your estimated total balance.',
+                            helperStyle: TextStyle(
+                              fontSize: 12,
+                              color: purple100,
                             ),
-                            onChanged: (val) {
-                              user.balance = double.parse(val);
-                            },
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please enter your total balance.';
-                              }
-                              return null;
-                            },
                           ),
+                          onChanged: (val) {
+                            user.balance = double.parse(val);
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your total balance.';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       const SizedBox(height: 15),
                       FadeAnimation(
                         2.8,
                         30,
-                        SizedBox(
-                          width: 295,
-                          child: Consumer<UserController>(
-                            builder: (context, pro, child) {
-                              {
-                                return TextFormField(
-                                  controller: passwordController,
-                                  autocorrect: true,
-                                  obscureText: !pro.isPasswordVisible,
-                                  textInputAction: TextInputAction.next,
-                                  style: TextStyle(color: Colors.white),
-                                  decoration: InputDecoration(
-                                    hintText: 'Password',
-                                    hintStyle: TextStyle(color: grey300),
-                                    helperText: 'Please enter your password.',
-                                    helperStyle: TextStyle(
-                                      fontSize: 12,
+                        Consumer<UserController>(
+                          builder: (context, pro, child) {
+                            {
+                              return TextFormField(
+                                controller: passwordController,
+                                autocorrect: true,
+                                obscureText: !pro.isPasswordVisible,
+                                textInputAction: TextInputAction.next,
+                                style: TextStyle(color: Colors.white),
+                                decoration: InputDecoration(
+                                  hintText: 'Password',
+                                  hintStyle: TextStyle(color: grey300),
+                                  helperText: 'Please enter your password.',
+                                  helperStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: purple100,
+                                  ),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      pro.isPasswordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
                                       color: purple100,
                                     ),
-                                    suffixIcon: IconButton(
-                                      icon: Icon(
-                                        pro.isPasswordVisible
-                                            ? Icons.visibility
-                                            : Icons.visibility_off,
-                                        color: purple100,
-                                      ),
-                                      onPressed: () {
-                                        pro.togglePasswordVisibility();
-                                      },
-                                    ),
+                                    onPressed: () {
+                                      pro.togglePasswordVisibility();
+                                    },
                                   ),
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Please enter your Password';
-                                    }
-                                    return null;
-                                  },
-                                );
-                              }
-                            },
-                          ),
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Please enter your Password';
+                                  }
+                                  return null;
+                                },
+                              );
+                            }
+                          },
                         ),
                       ),
                       const SizedBox(height: 15),
