@@ -3,11 +3,8 @@ import 'dart:math';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
@@ -418,7 +415,7 @@ class RecentPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 18.0, left: 10),
               child: SettingTile(
-                titel: 'Profile',
+                title: 'Profile',
                 icon: FluentIcons.person_24_regular,
                 onButtonPressed: () {
                   Navigator.of(context).push(
@@ -447,7 +444,7 @@ class RecentPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: SettingTile(
-                titel: 'Savings',
+                title: 'Savings',
                 icon: FluentIcons.wallet_24_regular,
                 onButtonPressed: () {
                   Navigator.of(context).push(
@@ -476,7 +473,7 @@ class RecentPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: SettingTile(
-                titel: 'Monthly Report',
+                title: 'Monthly Report',
                 icon: FluentIcons.calendar_28_regular,
                 onButtonPressed: () {
                   Navigator.of(context).push(
@@ -505,7 +502,7 @@ class RecentPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: SettingTile(
-                titel: 'Add Transaction',
+                title: 'Add Transaction',
                 icon: FluentIcons.add_square_multiple_24_regular,
                 onButtonPressed: () {
                   Navigator.of(context).push(
@@ -534,7 +531,7 @@ class RecentPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: SettingTile(
-                titel: 'Transaction History',
+                title: 'Transaction History',
                 icon: FluentIcons.apps_list_detail_24_regular,
                 onButtonPressed: () {
                   Navigator.of(context).push(
@@ -563,7 +560,7 @@ class RecentPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: SettingTile(
-                titel: 'Export Data',
+                title: 'Export Data',
                 icon: FluentIcons.document_pdf_24_regular,
                 onButtonPressed: () async {
                   UserController user = Provider.of<UserController>(

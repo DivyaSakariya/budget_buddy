@@ -16,8 +16,6 @@ class ReverseLoopAnimationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return MirrorAnimationBuilder(
       tween: Tween(begin: beginValue, end: endValue),
       duration: Duration(milliseconds: duration),

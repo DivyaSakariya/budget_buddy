@@ -9,7 +9,7 @@ class LogInController extends ChangeNotifier {
 
   LogInController({required this.isLogin, required this.isIntro});
 
-   islogin() async {
+  islogin() async {
     isLogin = true;
 
     SharedPreferences Pref = await SharedPreferences.getInstance();
@@ -18,7 +18,9 @@ class LogInController extends ChangeNotifier {
     log(isLogin.toString());
 
     notifyListeners();
-  }islogout() async {
+  }
+
+  islogout() async {
     isLogin = false;
 
     SharedPreferences Pref = await SharedPreferences.getInstance();

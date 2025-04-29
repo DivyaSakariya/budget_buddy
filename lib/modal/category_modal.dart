@@ -6,11 +6,6 @@ class CategoryModal {
   CategoryModal(this.id, this.title, this.image);
 
   factory CategoryModal.fromMap({required Map Category}) {
-
-    return CategoryModal(
-      Category['Id'],
-      Category['Title'],
-      Category['Image'],
-    );
+    return CategoryModal(Category['Id'], Category['Title'], Category['Image']);
   }
 }

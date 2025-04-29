@@ -5,7 +5,6 @@ class SaveGoalTile extends StatelessWidget {
   final String? savingDate;
   final double? amount;
 
-
   SaveGoalTile({
     required this.savingName,
     required this.savingDate,
@@ -20,13 +19,9 @@ class SaveGoalTile extends StatelessWidget {
       margin: EdgeInsets.all(8),
       height: 70,
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(
-          offset: Offset(2, 1),
-          color: Colors.grey.shade100,
-        ),BoxShadow(
-          offset: Offset(-2, -1),
-          color: Colors.grey.shade100,
-        ),
+        boxShadow: [
+          BoxShadow(offset: Offset(2, 1), color: Colors.grey.shade100),
+          BoxShadow(offset: Offset(-2, -1), color: Colors.grey.shade100),
         ],
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -36,16 +31,16 @@ class SaveGoalTile extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 9, right: 20),
             child: Container(
-              height: size.height * 0.06,child: Image.asset(
-                'assets/images/AppIcon.jpeg',fit: BoxFit.fitWidth,
+              height: size.height * 0.06,
+              child: Image.asset(
+                'assets/images/AppIcon.jpeg',
+                fit: BoxFit.fitWidth,
               ),
               decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
+                  BoxShadow(offset: Offset(2, 1), color: Colors.grey.shade100),
                   BoxShadow(
-                    offset: Offset(2, 1),
-                    color: Colors.grey.shade100,
-                  ),BoxShadow(
                     offset: Offset(-2, -1),
                     color: Colors.grey.shade100,
                   ),
@@ -62,27 +57,36 @@ class SaveGoalTile extends StatelessWidget {
               children: [
                 Text(
                   savingName ?? '',
-                  style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
                 Text(
-                 savingDate ?? '',
-                  style: TextStyle(fontSize: 11,fontWeight: FontWeight.w400,color: Colors.grey.shade600),
+                  savingDate ?? '',
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey.shade600,
+                  ),
                 ),
               ],
             ),
           ),
           Spacer(),
           Padding(
-              padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
-              child: Row(
-                children: [
-                  Icon(Icons.arrow_drop_up_rounded,color: Colors.greenAccent,),
-                  Text(
-                    '${amount}' ?? '',
-                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.greenAccent),
+            padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
+            child: Row(
+              children: [
+                Icon(Icons.arrow_drop_up_rounded, color: Colors.greenAccent),
+                Text(
+                  '${amount}' ?? '',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.greenAccent,
                   ),
-                ],
-              )),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

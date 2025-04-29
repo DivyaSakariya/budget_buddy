@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:typed_data';
 
-class UserModal{
+class UserModal {
   int? id;
   String? username;
   String? email;
@@ -9,13 +9,20 @@ class UserModal{
   double? balance;
   Uint8List? image;
 
-  UserModal( this.id, this.username, this.email, this.password, this.balance,this.image);
+  UserModal(
+    this.id,
+    this.username,
+    this.email,
+    this.password,
+    this.balance,
+    this.image,
+  );
 
   UserModal.init() {
     log("Empty user initialized...");
   }
 
-  factory UserModal.fromMap({required Map User}){
+  factory UserModal.fromMap({required Map User}) {
     return UserModal(
       User['Id'],
       User['Name'],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../modal/transaction_modal.dart';
 import '../../utility/colors.dart';
 
 class Tile extends StatelessWidget {
@@ -25,9 +24,7 @@ class Tile extends StatelessWidget {
       padding: EdgeInsets.all(5),
       margin: EdgeInsets.all(8),
       height: 70,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
       child: Row(
         children: [
           Padding(
@@ -36,9 +33,7 @@ class Tile extends StatelessWidget {
               padding: EdgeInsets.all(08),
               width: 50,
               height: 55,
-              child: Image.asset(
-                image ?? '',
-              ),
+              child: Image.asset(image ?? ''),
               decoration: BoxDecoration(
                 color: color.withOpacity(0.8) ?? primary,
                 borderRadius: BorderRadius.circular(12),
@@ -51,31 +46,23 @@ class Tile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  tital ?? '',
-                  style: TextStyle(fontSize: 16),
-                ),
-                Text(
-                  subtital ??'',
-                  style: TextStyle(fontSize: 15),
-                ),
+                Text(tital ?? '', style: TextStyle(fontSize: 16)),
+                Text(subtital ?? '', style: TextStyle(fontSize: 15)),
               ],
             ),
           ),
           Spacer(),
           Padding(
-              padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  amount,
-                  Text(
-                    date ?? '',
-                    style: TextStyle(fontSize: 12),
-                  ),
-                ],
-              )),
+            padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                amount,
+                Text(date ?? '', style: TextStyle(fontSize: 12)),
+              ],
+            ),
+          ),
         ],
       ),
     );

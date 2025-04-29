@@ -7,9 +7,7 @@ import '../../controller/transaction_controller.dart';
 import '../modal/transaction_modal.dart';
 
 class HeatMapController with ChangeNotifier {
-  Map<DateTime, int> dateColorMap = {
-    DateTime(2022, 1, 1): 1,
-  };
+  Map<DateTime, int> dateColorMap = {DateTime(2022, 1, 1): 1};
   Map<int, Color> colorsets = {
     1: Color.fromARGB(20, 2, 179, 8),
     2: Color.fromARGB(40, 2, 179, 8),
@@ -25,18 +23,17 @@ class HeatMapController with ChangeNotifier {
 
   DateTime? selectedDate;
 
-
   void setSelectedDate(DateTime date) {
     selectedDate = date;
     notifyListeners();
   }
 
-
   Future<void> updateDateColorMap(BuildContext context) async {
-    List<TransactionModal> transactions = Provider
-        .of<TransactionController>(context, listen: false)
-        .transactionList;
-
+    List<TransactionModal> transactions =
+        Provider.of<TransactionController>(
+          context,
+          listen: false,
+        ).transactionList;
 
     for (TransactionModal transaction in transactions) {
       DateTime date = DateFormat("MMM d, yyyy").parse(transaction.date!);
@@ -46,8 +43,4 @@ class HeatMapController with ChangeNotifier {
       notifyListeners();
     }
   }
-
-
-
-
 }

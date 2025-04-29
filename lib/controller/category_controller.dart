@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../helper/db_helper.dart';
 import '../modal/category_modal.dart';
 
-
 class CategoryController extends ChangeNotifier {
-
   List<CategoryModal> categoryList = [];
-
-
-
 
   CategoryController() {
     init();
@@ -21,13 +15,4 @@ class CategoryController extends ChangeNotifier {
     notifyListeners();
     return 0;
   }
-
-
-
-
-
-
-
-
-
 }

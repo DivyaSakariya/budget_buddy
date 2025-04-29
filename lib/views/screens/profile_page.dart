@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -24,12 +23,9 @@ import '../../controller/savings_controller.dart';
 import '../../controller/user_controller.dart';
 import '../../helper/db_helper.dart';
 import '../../modal/chart_modal.dart';
-import '../../modal/transaction_modal.dart';
-import '../../utility/animation/fade_animation_controller.dart';
 import '../component/setting_tile.dart';
 import 'add_transaction.dart';
 import 'history_page.dart';
-import 'home_page.dart';
 import 'login_page.dart';
 import 'monthly_page.dart';
 
@@ -230,7 +226,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const Gap(5),
                   SettingTile(
-                    titel: 'Recent Transaction ',
+                    title: 'Recent Transaction ',
                     icon: FluentIcons.app_recent_24_regular,
                     onTilePressed: () {
                       Navigator.of(context).push(
@@ -246,7 +242,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const Gap(5),
                   SettingTile(
-                    titel: 'Transaction History',
+                    title: 'Transaction History',
                     icon: FluentIcons.apps_list_detail_24_regular,
                     onTilePressed: () {
                       Navigator.of(context).push(
@@ -262,7 +258,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const Gap(5),
                   SettingTile(
-                    titel: 'Monthly Report',
+                    title: 'Monthly Report',
                     icon: FluentIcons.calendar_month_24_regular,
                     onTilePressed: () {
                       Navigator.of(context).push(
@@ -278,7 +274,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const Gap(5),
                   SettingTile(
-                    titel: 'Add Transaction ',
+                    title: 'Add Transaction ',
                     icon: FluentIcons.add_square_multiple_24_regular,
                     onTilePressed: () {
                       Navigator.of(context).push(
@@ -299,7 +295,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const Gap(5),
                   SettingTile(
-                    titel: 'Savings History',
+                    title: 'Savings History',
                     icon: FluentIcons.savings_24_regular,
                     onTilePressed: () {
                       Navigator.of(context).push(
@@ -320,7 +316,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const Gap(5),
                   SettingTile(
-                    titel: 'Export Data',
+                    title: 'Export Data',
                     icon: FluentIcons.document_pdf_24_regular,
                     onTilePressed: () async {
                       UserController user = Provider.of<UserController>(
@@ -384,7 +380,10 @@ class ProfilePage extends StatelessWidget {
                                               pw.CrossAxisAlignment.start,
                                           children: [
                                             pw.Row(
-                                              mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
+                                              mainAxisAlignment:
+                                                  pw
+                                                      .MainAxisAlignment
+                                                      .spaceEvenly,
                                               children: [
                                                 pw.SizedBox(width: 25),
                                                 pw.Row(
@@ -1010,7 +1009,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const Gap(5),
                   SettingTile(
-                    titel: 'Feedback',
+                    title: 'Feedback',
                     icon: FluentIcons.person_feedback_24_regular,
                     onTilePressed: () async {
                       Uri email = Uri(
@@ -1024,7 +1023,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const Gap(5),
                   SettingTile(
-                    titel: 'Privacy Policy',
+                    title: 'Privacy Policy',
                     icon: FluentIcons.tab_inprivate_account_24_regular,
                     onTilePressed: () {
                       Navigator.of(context).push(
@@ -1040,7 +1039,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const Gap(5),
                   SettingTile(
-                    titel: 'Log Out',
+                    title: 'Log Out',
                     icon: FluentIcons.arrow_exit_20_regular,
                     onTilePressed: () async {
                       AwesomeDialog(

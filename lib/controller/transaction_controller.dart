@@ -5,17 +5,15 @@ import '../helper/db_helper.dart';
 import '../modal/transaction_modal.dart';
 
 class TransactionController extends ChangeNotifier {
-
   List<TransactionModal> transactionList = [];
   String date = '${DateFormat.yMMMd().format(DateTime.now())}';
-  String time = '${TimeOfDay.now().hour%12}:${TimeOfDay.now().minute}';
+  String time = '${TimeOfDay.now().hour % 12}:${TimeOfDay.now().minute}';
   String selecttype = 'INCOME';
   String edittype = '';
   String selectedcategory = 'Food';
 
-  TransactionController(){
-init();
-
+  TransactionController() {
+    init();
   }
 
   init() async {
@@ -25,24 +23,21 @@ init();
   }
 
   String selectType({required String type}) {
-    selecttype=type;
+    selecttype = type;
     notifyListeners();
-    return'';
+    return '';
   }
 
   String editType({required String type}) {
-    selecttype=type;
+    selecttype = type;
     notifyListeners();
-    return'';
+    return '';
   }
 
-
-
-
-  String getSelected ({required String? category}) {
+  String getSelected({required String? category}) {
     selectedcategory = category!;
     notifyListeners();
-    return'';
+    return '';
   }
 
   showMyDate(BuildContext context) async {
@@ -55,7 +50,7 @@ init();
 
     if (pickDate != null) {
       String formattedDate = DateFormat.yMMMd().format(pickDate);
-      date =formattedDate;
+      date = formattedDate;
     }
     notifyListeners();
   }
@@ -71,6 +66,4 @@ init();
 
     notifyListeners();
   }
-
-
 }

@@ -299,7 +299,8 @@ class SignUpPage extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.25,
                           minWidth: MediaQuery.of(context).size.width * 0.20,
                           loader: const CircularProgressIndicator(
-                            color: Colors.white,),
+                            color: Colors.white,
+                          ),
                           child: const Text(
                             'SIGN UP',
                             style: TextStyle(

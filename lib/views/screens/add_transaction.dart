@@ -181,42 +181,37 @@ class AddTransactionPage extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.only(
-                                                    right: 3,
-                                                  ),
+                                              padding: const EdgeInsets.only(
+                                                right: 3,
+                                              ),
                                               child: Container(
-                                                margin:
-                                                    const EdgeInsets.all(2),
-                                                padding:
-                                                    const EdgeInsets.all(5),
+                                                margin: const EdgeInsets.all(2),
+                                                padding: const EdgeInsets.all(
+                                                  5,
+                                                ),
                                                 width: size.width * 0.11,
                                                 height: size.height * 0.3,
                                                 decoration: BoxDecoration(
                                                   color: Colors
                                                       .primaries[Provider.of<
-                                                                CategoryController
-                                                              >(context)
-                                                              .categoryList
-                                                              .indexOf(e) %
+                                                            CategoryController
+                                                          >(
+                                                            context,
+                                                          ).categoryList.indexOf(
+                                                            e,
+                                                          ) %
                                                           Colors
                                                               .primaries
                                                               .length]
                                                       .withOpacity(0.75),
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                        8,
-                                                      ),
+                                                      BorderRadius.circular(8),
                                                 ),
-                                                child: Image.asset(
-                                                  e.image!,
-                                                ),
+                                                child: Image.asset(e.image!),
                                               ),
                                             ),
                                             Text(e.title!),
-                                            SizedBox(
-                                              width: size.width * 0.25,
-                                            ),
+                                            SizedBox(width: size.width * 0.25),
                                           ],
                                         ),
                                       ),

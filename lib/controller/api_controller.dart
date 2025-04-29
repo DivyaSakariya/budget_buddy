@@ -9,13 +9,8 @@ class ApiController extends ChangeNotifier {
     Search();
   }
 
-  Search({
-    String val = " ",
-  }) async {
-    data = await ApiHelper.apiHelper.getWallpapers(
-      query: val,
-    ) ??
-        [];
+  Search({String val = " "}) async {
+    data = await ApiHelper.apiHelper.getWallpapers(query: val) ?? [];
     notifyListeners();
     return 0;
   }

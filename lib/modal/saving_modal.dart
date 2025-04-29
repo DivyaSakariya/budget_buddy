@@ -11,21 +11,19 @@ class SavingsGoal {
   Uint8List? image;
 
   SavingsGoal(
-     this.id,
-     this.name,
-     this.targetAmount,
-     this.targetDate,
-    this.currentProgress ,
-    this.image ,
+    this.id,
+    this.name,
+    this.targetAmount,
+    this.targetDate,
+    this.currentProgress,
+    this.image,
   );
 
   SavingsGoal.init() {
-
     log("Empty savings goal initialized...");
   }
 
-
- factory SavingsGoal.fromMap({required Map savingsGoal}) {
+  factory SavingsGoal.fromMap({required Map savingsGoal}) {
     return SavingsGoal(
       savingsGoal['Id'],
       savingsGoal['Name'],
@@ -35,6 +33,4 @@ class SavingsGoal {
       savingsGoal['Image'],
     );
   }
-
-
 }

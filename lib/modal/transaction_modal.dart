@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 class TransactionModal {
-
   int? id;
   double? amount;
   String? description;
@@ -10,12 +9,20 @@ class TransactionModal {
   String? time;
   String? date;
 
-  TransactionModal(this.id, this.amount, this.description, this.category, this.type, this.time, this.date);
-
+  TransactionModal(
+    this.id,
+    this.amount,
+    this.description,
+    this.category,
+    this.type,
+    this.time,
+    this.date,
+  );
 
   TransactionModal.init() {
     log("Empty transaction initialized...");
   }
+
   factory TransactionModal.fromMap({required Map Transaction}) {
     return TransactionModal(
       Transaction['Id'],

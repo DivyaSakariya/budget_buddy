@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../modal/user_modal.dart';
@@ -17,6 +16,7 @@ class UserController extends ChangeNotifier {
   String? email;
   double? total;
   Uint8List? image;
+
   UserController() {
     init();
 
