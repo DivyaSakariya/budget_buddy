@@ -331,7 +331,7 @@ class ProfilePage extends StatelessWidget {
                           '${TimeOfDay.now().hour % 12}:${TimeOfDay.now().minute}';
                       final logoImage = pw.MemoryImage(
                         (await rootBundle.load(
-                          "assets/images/AppIcon.jpeg",
+                          "assets/images/MainIcon.png",
                         )).buffer.asUint8List(),
                       );
                       final image = pw.MemoryImage(

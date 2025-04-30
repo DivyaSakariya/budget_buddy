@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 const Color primary = Color(0xFF4A148C);
 const Color secondary = Color(0xFF9C27B0);
 const Color third = Color(0xFFF3E5F5);
+const Color textField = Color(0xFFF4EBF5);
 const Color purple100 = Color(0xFFE1BEE7);
 const Color purple300 = Color(0xFFBA68C8);
 const Color grey400 = Color(0xFFBDBDBD);

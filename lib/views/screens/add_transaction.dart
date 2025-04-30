@@ -61,7 +61,7 @@ class AddTransactionPage extends StatelessWidget {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color(0xE7EBEBF1),
+                    color: textField,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -115,7 +115,7 @@ class AddTransactionPage extends StatelessWidget {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color(0xE7EBEBF1),
+                    color: textField,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -161,7 +161,7 @@ class AddTransactionPage extends StatelessWidget {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color(0xE7EBEBF1),
+                    color: textField,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
@@ -218,7 +218,7 @@ class AddTransactionPage extends StatelessWidget {
                                     )
                                     .toList(),
                             borderRadius: BorderRadius.circular(12),
-                            dropdownColor: const Color(0xE7EBEBF1),
+                            dropdownColor: textField,
                             iconEnabledColor: Colors.grey,
                             iconSize: 28,
                             style: GoogleFonts.poppins(
@@ -359,7 +359,7 @@ class AddTransactionPage extends StatelessWidget {
                     Container(
                       width: size.width * 0.32,
                       decoration: BoxDecoration(
-                        color: third,
+                        color: textField,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Padding(
@@ -394,7 +394,7 @@ class AddTransactionPage extends StatelessWidget {
                     Container(
                       width: size.width * 0.4,
                       decoration: BoxDecoration(
-                        color: third,
+                        color: textField,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Padding(

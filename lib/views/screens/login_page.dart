@@ -104,28 +104,25 @@ class LogInPage extends StatelessWidget {
                       FadeAnimation(
                         1.2,
                         30,
-                        SizedBox(
-                          width: 200,
-                          child: TextFormField(
-                            controller: userController,
-                            autocorrect: true,
-                            style: TextStyle(color: Colors.white),
-                            decoration: const InputDecoration(
-                              hintText: 'Username',
-                              hintStyle: TextStyle(color: grey300),
-                              helperText: 'Please enter your Username',
-                              helperStyle: TextStyle(
-                                fontSize: 12,
-                                color: purple100,
-                              ),
+                        TextFormField(
+                          controller: userController,
+                          autocorrect: true,
+                          style: TextStyle(color: Colors.white),
+                          decoration: const InputDecoration(
+                            hintText: 'Username',
+                            hintStyle: TextStyle(color: grey300),
+                            helperText: 'Please enter your Username',
+                            helperStyle: TextStyle(
+                              fontSize: 12,
+                              color: purple100,
                             ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please enter your First name';
-                              }
-                              return null;
-                            },
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your First name';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       const SizedBox(height: 16),

@@ -3,11 +3,8 @@ import 'dart:math';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
@@ -148,7 +145,7 @@ class RecentPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(width: size.width * 0.04),
+                        SizedBox(width: size.width * 0.01),
                         Column(
                           children: [
                             Column(
@@ -571,17 +568,20 @@ class RecentPage extends StatelessWidget {
                     context,
                     listen: false,
                   );
-                  String date =
-                      '${DateFormat('dd/MM/yyyy').format(DateTime.now())}';
+                  String date = DateFormat(
+                    'dd/MM/yyyy',
+                  ).format(DateTime.now());
 
                   String time =
                       '${TimeOfDay.now().hour % 12}:${TimeOfDay.now().minute}';
                   final logoImage = pw.MemoryImage(
                     (await rootBundle.load(
-                      "assets/images/AppIcon.png",
+                      "assets/images/MainIcon.png",
                     )).buffer.asUint8List(),
                   );
-                  final image = pw.MemoryImage((user.image ?? Uint8List(0)));
+                  final image = pw.MemoryImage(
+                    (user.image ?? Uint8List(0)),
+                  );
 
                   pdf.addPage(
                     pw.MultiPage(
@@ -595,7 +595,7 @@ class RecentPage extends StatelessWidget {
                                 children: [
                                   pw.Column(
                                     mainAxisAlignment:
-                                        pw.MainAxisAlignment.spaceBetween,
+                                    pw.MainAxisAlignment.spaceBetween,
                                     children: [
                                       pw.Container(
                                         color: PdfColors.black,
@@ -622,11 +622,13 @@ class RecentPage extends StatelessWidget {
                                   pw.Container(
                                     child: pw.Column(
                                       crossAxisAlignment:
-                                          pw.CrossAxisAlignment.start,
+                                      pw.CrossAxisAlignment.start,
                                       children: [
                                         pw.Row(
                                           mainAxisAlignment:
-                                              pw.MainAxisAlignment.spaceEvenly,
+                                          pw
+                                              .MainAxisAlignment
+                                              .spaceEvenly,
                                           children: [
                                             pw.SizedBox(width: 25),
                                             pw.Row(
@@ -637,7 +639,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.black,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                                 pw.Text(
@@ -646,7 +648,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.grey,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                               ],
@@ -657,7 +659,8 @@ class RecentPage extends StatelessWidget {
                                               style: pw.TextStyle(
                                                 color: PdfColors.black,
                                                 fontSize: 18,
-                                                fontWeight: pw.FontWeight.bold,
+                                                fontWeight:
+                                                pw.FontWeight.bold,
                                               ),
                                             ),
                                             pw.SizedBox(width: 25),
@@ -669,7 +672,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.black,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                                 pw.Text(
@@ -678,7 +681,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.grey,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                               ],
@@ -691,7 +694,9 @@ class RecentPage extends StatelessWidget {
                                             pw.SizedBox(width: 20),
                                             pw.Column(
                                               crossAxisAlignment:
-                                                  pw.CrossAxisAlignment.start,
+                                              pw
+                                                  .CrossAxisAlignment
+                                                  .start,
                                               children: [
                                                 pw.Text(
                                                   'Expense',
@@ -699,7 +704,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.black,
                                                     fontSize: 36,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                     letterSpacing: 2,
                                                   ),
                                                 ),
@@ -709,14 +714,19 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.black,
                                                     fontSize: 60,
                                                     fontWeight:
-                                                        pw.FontWeight.normal,
+                                                    pw
+                                                        .FontWeight
+                                                        .normal,
                                                     letterSpacing: 2,
                                                   ),
                                                 ),
                                               ],
                                             ),
                                             pw.SizedBox(width: 140),
-                                            pw.Image(logoImage, height: 100),
+                                            pw.Image(
+                                              logoImage,
+                                              height: 100,
+                                            ),
                                           ],
                                         ),
 
@@ -736,7 +746,9 @@ class RecentPage extends StatelessWidget {
                                             pw.SizedBox(width: 20),
                                             pw.Column(
                                               crossAxisAlignment:
-                                                  pw.CrossAxisAlignment.start,
+                                              pw
+                                                  .CrossAxisAlignment
+                                                  .start,
                                               children: [
                                                 pw.Text(
                                                   user.username ?? '',
@@ -744,7 +756,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.black,
                                                     fontSize: 36,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                                 pw.SizedBox(height: 15),
@@ -754,7 +766,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.grey,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                                 pw.SizedBox(height: 10),
@@ -763,19 +775,25 @@ class RecentPage extends StatelessWidget {
                                                     pw.Text(
                                                       'Current Balance : ',
                                                       style: pw.TextStyle(
-                                                        color: PdfColors.black,
+                                                        color:
+                                                        PdfColors.black,
                                                         fontSize: 18,
                                                         fontWeight:
-                                                            pw.FontWeight.bold,
+                                                        pw
+                                                            .FontWeight
+                                                            .bold,
                                                       ),
                                                     ),
                                                     pw.Text(
                                                       '${(user.total ?? 25000) - expense + income}',
                                                       style: pw.TextStyle(
-                                                        color: PdfColors.grey,
+                                                        color:
+                                                        PdfColors.grey,
                                                         fontSize: 20,
                                                         fontWeight:
-                                                            pw.FontWeight.bold,
+                                                        pw
+                                                            .FontWeight
+                                                            .bold,
                                                       ),
                                                     ),
                                                   ],
@@ -797,14 +815,15 @@ class RecentPage extends StatelessWidget {
                                                 ),
                                                 pw.Row(
                                                   mainAxisAlignment:
-                                                      pw
-                                                          .MainAxisAlignment
-                                                          .spaceBetween,
+                                                  pw
+                                                      .MainAxisAlignment
+                                                      .spaceBetween,
                                                   children: [
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                     pw.Column(
                                                       children: [
@@ -812,71 +831,88 @@ class RecentPage extends StatelessWidget {
                                                           'NO',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '1',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '2',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '3',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                       ],
@@ -884,13 +920,15 @@ class RecentPage extends StatelessWidget {
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                     pw.SizedBox(width: 50),
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                     pw.Column(
                                                       children: [
@@ -898,71 +936,88 @@ class RecentPage extends StatelessWidget {
                                                           'Type',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           'Income',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.green,
+                                                            PdfColors
+                                                                .green,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           'Expense',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.red,
+                                                            PdfColors
+                                                                .red,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           'Savings',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.blue,
+                                                            PdfColors
+                                                                .blue,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                       ],
@@ -970,13 +1025,15 @@ class RecentPage extends StatelessWidget {
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                     pw.SizedBox(width: 50),
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                     pw.Column(
                                                       children: [
@@ -984,71 +1041,88 @@ class RecentPage extends StatelessWidget {
                                                           'Amount',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '$income',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.green,
+                                                            PdfColors
+                                                                .green,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '$expense',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.red,
+                                                            PdfColors
+                                                                .red,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '$savings',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.blue,
+                                                            PdfColors
+                                                                .blue,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                       ],
@@ -1056,7 +1130,8 @@ class RecentPage extends StatelessWidget {
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                   ],
                                                 ),
@@ -1073,20 +1148,27 @@ class RecentPage extends StatelessWidget {
 
                                                     pw.Text(
                                                       'Total Amount :',
-                                                      style: const pw.TextStyle(
-                                                        color: PdfColors.black,
+                                                      style:
+                                                      const pw.TextStyle(
+                                                        color:
+                                                        PdfColors
+                                                            .black,
                                                         fontSize: 18,
-                                                        letterSpacing: 2,
+                                                        letterSpacing:
+                                                        2,
                                                       ),
                                                     ),
                                                     pw.SizedBox(width: 35),
                                                     pw.Text(
                                                       '${income - expense + savings}',
                                                       style: pw.TextStyle(
-                                                        color: PdfColors.black,
+                                                        color:
+                                                        PdfColors.black,
                                                         fontSize: 18,
                                                         fontWeight:
-                                                            pw.FontWeight.bold,
+                                                        pw
+                                                            .FontWeight
+                                                            .bold,
                                                         letterSpacing: 1,
                                                       ),
                                                     ),
@@ -1109,16 +1191,18 @@ class RecentPage extends StatelessWidget {
                                             pw.Container(
                                               child: pw.ConstrainedBox(
                                                 constraints:
-                                                    const pw.BoxConstraints(
-                                                      maxWidth: 450,
-                                                    ),
+                                                const pw.BoxConstraints(
+                                                  maxWidth: 450,
+                                                ),
                                                 child: pw.Text(
                                                   "          ${user.username} balance income and expensing, emphasizing savings for goals. Regular budget reviews ensure financial resilience.",
                                                   style: pw.TextStyle(
                                                     color: PdfColors.black,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.normal,
+                                                    pw
+                                                        .FontWeight
+                                                        .normal,
                                                     letterSpacing: 2,
                                                   ),
                                                 ),
@@ -1135,7 +1219,8 @@ class RecentPage extends StatelessWidget {
                                               style: pw.TextStyle(
                                                 color: PdfColors.black,
                                                 fontSize: 18,
-                                                fontWeight: pw.FontWeight.bold,
+                                                fontWeight:
+                                                pw.FontWeight.bold,
                                               ),
                                             ),
                                           ],
@@ -1151,9 +1236,13 @@ class RecentPage extends StatelessWidget {
                       },
                     ),
                   );
-                  await Printing.layoutPdf(onLayout: (format) => pdf.save());
+                  await Printing.layoutPdf(
+                    onLayout: (format) => pdf.save(),
+                  );
                   final output = await getTemporaryDirectory();
-                  final file = File("${output.path}/BudgetBuddy-Report.pdf");
+                  final file = File(
+                    "${output.path}/BudgetBuddy-Report.pdf",
+                  );
                   await file.writeAsBytes(await pdf.save());
                 },
                 onTilePressed: () async {
@@ -1161,17 +1250,20 @@ class RecentPage extends StatelessWidget {
                     context,
                     listen: false,
                   );
-                  String date =
-                      '${DateFormat('dd/MM/yyyy').format(DateTime.now())}';
+                  String date = DateFormat(
+                    'dd/MM/yyyy',
+                  ).format(DateTime.now());
 
                   String time =
                       '${TimeOfDay.now().hour % 12}:${TimeOfDay.now().minute}';
                   final logoImage = pw.MemoryImage(
                     (await rootBundle.load(
-                      "assets/images/ic_launcher.png",
+                      "assets/images/MainIcon.png",
                     )).buffer.asUint8List(),
                   );
-                  final image = pw.MemoryImage((user.image ?? Uint8List(0)));
+                  final image = pw.MemoryImage(
+                    (user.image ?? Uint8List(0)),
+                  );
 
                   pdf.addPage(
                     pw.MultiPage(
@@ -1185,7 +1277,7 @@ class RecentPage extends StatelessWidget {
                                 children: [
                                   pw.Column(
                                     mainAxisAlignment:
-                                        pw.MainAxisAlignment.spaceBetween,
+                                    pw.MainAxisAlignment.spaceBetween,
                                     children: [
                                       pw.Container(
                                         color: PdfColors.black,
@@ -1212,11 +1304,13 @@ class RecentPage extends StatelessWidget {
                                   pw.Container(
                                     child: pw.Column(
                                       crossAxisAlignment:
-                                          pw.CrossAxisAlignment.start,
+                                      pw.CrossAxisAlignment.start,
                                       children: [
                                         pw.Row(
                                           mainAxisAlignment:
-                                              pw.MainAxisAlignment.spaceEvenly,
+                                          pw
+                                              .MainAxisAlignment
+                                              .spaceEvenly,
                                           children: [
                                             pw.SizedBox(width: 25),
                                             pw.Row(
@@ -1227,7 +1321,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.black,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                                 pw.Text(
@@ -1236,7 +1330,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.grey,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                               ],
@@ -1247,7 +1341,8 @@ class RecentPage extends StatelessWidget {
                                               style: pw.TextStyle(
                                                 color: PdfColors.black,
                                                 fontSize: 18,
-                                                fontWeight: pw.FontWeight.bold,
+                                                fontWeight:
+                                                pw.FontWeight.bold,
                                               ),
                                             ),
                                             pw.SizedBox(width: 25),
@@ -1259,7 +1354,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.black,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                                 pw.Text(
@@ -1268,7 +1363,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.grey,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                               ],
@@ -1281,7 +1376,9 @@ class RecentPage extends StatelessWidget {
                                             pw.SizedBox(width: 20),
                                             pw.Column(
                                               crossAxisAlignment:
-                                                  pw.CrossAxisAlignment.start,
+                                              pw
+                                                  .CrossAxisAlignment
+                                                  .start,
                                               children: [
                                                 pw.Text(
                                                   'Expense',
@@ -1289,7 +1386,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.black,
                                                     fontSize: 36,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                     letterSpacing: 2,
                                                   ),
                                                 ),
@@ -1299,14 +1396,19 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.black,
                                                     fontSize: 60,
                                                     fontWeight:
-                                                        pw.FontWeight.normal,
+                                                    pw
+                                                        .FontWeight
+                                                        .normal,
                                                     letterSpacing: 2,
                                                   ),
                                                 ),
                                               ],
                                             ),
                                             pw.SizedBox(width: 140),
-                                            pw.Image(logoImage, height: 100),
+                                            pw.Image(
+                                              logoImage,
+                                              height: 100,
+                                            ),
                                           ],
                                         ),
 
@@ -1326,7 +1428,9 @@ class RecentPage extends StatelessWidget {
                                             pw.SizedBox(width: 20),
                                             pw.Column(
                                               crossAxisAlignment:
-                                                  pw.CrossAxisAlignment.start,
+                                              pw
+                                                  .CrossAxisAlignment
+                                                  .start,
                                               children: [
                                                 pw.Text(
                                                   user.username ?? '',
@@ -1334,7 +1438,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.black,
                                                     fontSize: 36,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                                 pw.SizedBox(height: 15),
@@ -1344,7 +1448,7 @@ class RecentPage extends StatelessWidget {
                                                     color: PdfColors.grey,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.bold,
+                                                    pw.FontWeight.bold,
                                                   ),
                                                 ),
                                                 pw.SizedBox(height: 10),
@@ -1353,19 +1457,25 @@ class RecentPage extends StatelessWidget {
                                                     pw.Text(
                                                       'Current Balance : ',
                                                       style: pw.TextStyle(
-                                                        color: PdfColors.black,
+                                                        color:
+                                                        PdfColors.black,
                                                         fontSize: 18,
                                                         fontWeight:
-                                                            pw.FontWeight.bold,
+                                                        pw
+                                                            .FontWeight
+                                                            .bold,
                                                       ),
                                                     ),
                                                     pw.Text(
                                                       '${(user.total ?? 25000) - expense + income}',
                                                       style: pw.TextStyle(
-                                                        color: PdfColors.grey,
+                                                        color:
+                                                        PdfColors.grey,
                                                         fontSize: 20,
                                                         fontWeight:
-                                                            pw.FontWeight.bold,
+                                                        pw
+                                                            .FontWeight
+                                                            .bold,
                                                       ),
                                                     ),
                                                   ],
@@ -1387,14 +1497,15 @@ class RecentPage extends StatelessWidget {
                                                 ),
                                                 pw.Row(
                                                   mainAxisAlignment:
-                                                      pw
-                                                          .MainAxisAlignment
-                                                          .spaceBetween,
+                                                  pw
+                                                      .MainAxisAlignment
+                                                      .spaceBetween,
                                                   children: [
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                     pw.Column(
                                                       children: [
@@ -1402,71 +1513,88 @@ class RecentPage extends StatelessWidget {
                                                           'NO',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '1',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '2',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '3',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                       ],
@@ -1474,13 +1602,15 @@ class RecentPage extends StatelessWidget {
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                     pw.SizedBox(width: 50),
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                     pw.Column(
                                                       children: [
@@ -1488,71 +1618,88 @@ class RecentPage extends StatelessWidget {
                                                           'Type',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           'Income',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.green,
+                                                            PdfColors
+                                                                .green,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           'Expense',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.red,
+                                                            PdfColors
+                                                                .red,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           'Savings',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.blue,
+                                                            PdfColors
+                                                                .blue,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                       ],
@@ -1560,13 +1707,15 @@ class RecentPage extends StatelessWidget {
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                     pw.SizedBox(width: 50),
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                     pw.Column(
                                                       children: [
@@ -1574,71 +1723,88 @@ class RecentPage extends StatelessWidget {
                                                           'Amount',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.black,
+                                                            PdfColors
+                                                                .black,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '$income',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.green,
+                                                            PdfColors
+                                                                .green,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '$expense',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.red,
+                                                            PdfColors
+                                                                .red,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                         pw.Container(
                                                           height: 1,
                                                           width: 110,
                                                           color:
-                                                              PdfColors.black,
+                                                          PdfColors
+                                                              .black,
                                                         ),
-                                                        pw.SizedBox(height: 05),
+                                                        pw.SizedBox(
+                                                          height: 05,
+                                                        ),
                                                         pw.Text(
                                                           '$savings',
                                                           style: pw.TextStyle(
                                                             color:
-                                                                PdfColors.blue,
+                                                            PdfColors
+                                                                .blue,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                pw
-                                                                    .FontWeight
-                                                                    .bold,
+                                                            pw
+                                                                .FontWeight
+                                                                .bold,
                                                           ),
                                                         ),
                                                       ],
@@ -1646,7 +1812,8 @@ class RecentPage extends StatelessWidget {
                                                     pw.Container(
                                                       height: 120,
                                                       width: 2,
-                                                      color: PdfColors.black,
+                                                      color:
+                                                      PdfColors.black,
                                                     ),
                                                   ],
                                                 ),
@@ -1663,20 +1830,27 @@ class RecentPage extends StatelessWidget {
 
                                                     pw.Text(
                                                       'Total Amount :',
-                                                      style: const pw.TextStyle(
-                                                        color: PdfColors.black,
+                                                      style:
+                                                      const pw.TextStyle(
+                                                        color:
+                                                        PdfColors
+                                                            .black,
                                                         fontSize: 18,
-                                                        letterSpacing: 2,
+                                                        letterSpacing:
+                                                        2,
                                                       ),
                                                     ),
                                                     pw.SizedBox(width: 35),
                                                     pw.Text(
                                                       '${income - expense + savings}',
                                                       style: pw.TextStyle(
-                                                        color: PdfColors.black,
+                                                        color:
+                                                        PdfColors.black,
                                                         fontSize: 18,
                                                         fontWeight:
-                                                            pw.FontWeight.bold,
+                                                        pw
+                                                            .FontWeight
+                                                            .bold,
                                                         letterSpacing: 1,
                                                       ),
                                                     ),
@@ -1699,16 +1873,18 @@ class RecentPage extends StatelessWidget {
                                             pw.Container(
                                               child: pw.ConstrainedBox(
                                                 constraints:
-                                                    const pw.BoxConstraints(
-                                                      maxWidth: 450,
-                                                    ),
+                                                const pw.BoxConstraints(
+                                                  maxWidth: 450,
+                                                ),
                                                 child: pw.Text(
                                                   "          ${user.username} balance income and expensing, emphasizing savings for goals. Regular budget reviews ensure financial resilience.",
                                                   style: pw.TextStyle(
                                                     color: PdfColors.black,
                                                     fontSize: 18,
                                                     fontWeight:
-                                                        pw.FontWeight.normal,
+                                                    pw
+                                                        .FontWeight
+                                                        .normal,
                                                     letterSpacing: 2,
                                                   ),
                                                 ),
@@ -1725,7 +1901,8 @@ class RecentPage extends StatelessWidget {
                                               style: pw.TextStyle(
                                                 color: PdfColors.black,
                                                 fontSize: 18,
-                                                fontWeight: pw.FontWeight.bold,
+                                                fontWeight:
+                                                pw.FontWeight.bold,
                                               ),
                                             ),
                                           ],
@@ -1741,9 +1918,13 @@ class RecentPage extends StatelessWidget {
                       },
                     ),
                   );
-                  await Printing.layoutPdf(onLayout: (format) => pdf.save());
+                  await Printing.layoutPdf(
+                    onLayout: (format) => pdf.save(),
+                  );
                   final output = await getTemporaryDirectory();
-                  final file = File("${output.path}/BudgetBuddy-Report.pdf");
+                  final file = File(
+                    "${output.path}/BudgetBuddy-Report.pdf",
+                  );
                   await file.writeAsBytes(await pdf.save());
                 },
               ),
