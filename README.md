@@ -131,10 +131,8 @@ BudgetBuddy is a feature-rich expense management Flutter application designed to
  ┃ ┃ ┣ 📂 animation                                                                                                                                            
  ┃ ┃ ┃ ┣ 📜 fade_animation_controller.dart                                                                                                                                
  ┃ ┃ ┃ ┗ 📜 loop_controller.dart                                                                                                                                
- ┃ ┃ ┗ 📜 avtar_list.dart   
- 
- ┃ ┃ ┗ 📜 colors.dart   
- 
+ ┃ ┃ ┗ 📜 avtar_list.dart    
+ ┃ ┃ ┗ 📜 colors.dart    
  ┃ ┣ 📂 views                                                                                                                                
  ┃ ┃ ┣ 📂 component                                                                                                                                
  ┃ ┃ ┃ ┣ 📜 saving_goal_tile.dart                                                                                                                                
