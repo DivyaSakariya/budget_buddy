@@ -10,7 +10,7 @@ import '../../controller/savings_controller.dart';
 import '../../helper/db_helper.dart';
 import '../../modal/saving_goal_modal.dart';
 import '../../utility/animation/fade_animation_controller.dart';
-import '../component/saving_goal_title.dart';
+import '../component/saving_goal_tile.dart';
 
 class SavingGoalPage extends StatelessWidget {
   final int argument;
