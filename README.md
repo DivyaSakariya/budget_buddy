@@ -212,7 +212,28 @@ The app follows the MVC (Model-View-Controller) pattern:
 
 ## Screenshots
 
-<img src="https://github.com/tushal13/spadview/assets/113960162/d08df1e8-e9e8-4986-ad57-e9b6330a9392" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/5356d08b-f798-437e-8995-f3174e25ccee" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/c0edc8f0-e606-40c4-ba7f-1e33a219bcb0" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/390f9e59-d470-44e9-87f1-e9fc202fdd8d" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/f24e0087-06ed-4411-888c-cc718119e4e2" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/aba928eb-1e0d-481b-8b48-ae1b194cce9e" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/13be6fe7-f21f-4202-9d3b-2644655ef7ee" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/03d782b1-4904-401e-8153-320e8ae4b966" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/0a4af6cc-0faa-4506-a2c7-ff76247e8bd3" alt="Image" width="200">
+<img src="https://github.com/user-attachments/assets/f7cb908b-ebc2-491b-9bc4-8b827ec1fba9" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/0915f657-8a35-4ea3-989c-200518529783" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/baa3826d-8690-4988-9cec-aa677c355ea0" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/a1e07426-439f-44c1-8302-c97438056482" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/d228d095-47c8-44fe-be02-3131f667a265" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/61501466-2be8-410a-a7f0-4971f38b25d1" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/502c227e-35f2-4671-95ab-8d7ef71679f9" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/d8e0b1a4-a5b2-438d-a167-13aafdfcb914" alt="Image" width="200">  
+<img src="https://github.com/user-attachments/assets/c0762040-20d6-4d0f-8300-a8ed6b62b958" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/fb216f70-fd9a-4f5d-875d-381da24b4119" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/0e949d1f-1b55-457d-8235-c7e6366ea021" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/61cd74e4-7132-413a-81d2-7fceebc2d09a" alt="Image" width="200"> 
+<img src="https://github.com/user-attachments/assets/34975f44-f8e6-4164-bc32-d2eeb6faab3d" alt="Image" width="200"> 
+
 
 ## Getting Started
 
@@ -255,7 +276,7 @@ void main() {
 
 ## AppIcon Integration
 
-A package for updating Flutter launcher icons to BusgetBuddy Icon.
+A package for updating Flutter launcher icons to BudgetBuddy Icon.
 
 1. Add Package in .yaml file
 ```dart
